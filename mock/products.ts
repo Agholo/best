@@ -19,10 +19,13 @@ const categories = [
 	"cameras",
 ];
 
-const png = faker.image.url({
-  width: 300,
-  height: 300,
-});
+const ram = [
+	"4GB",
+	"8GB",
+	"16GB",
+	"32GB",
+	"64GB",
+];
 
 export const products = Array.from({ length: 100 }, () => ({
 	id: faker.string.uuid(),
@@ -37,5 +40,6 @@ export const products = Array.from({ length: 100 }, () => ({
 	filterable: {
 		brand: faker.helpers.arrayElement(brands),
 		price: faker.commerce.price(),
+		RAM: faker.helpers.arrayElement(ram),
 	},
 }));

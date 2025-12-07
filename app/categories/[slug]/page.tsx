@@ -31,7 +31,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 					</BreadcrumbItem>
 				</BreadcrumbList>
 			</Breadcrumb>
-			<Text size="3xl">{category}</Text>
+			<Text size="3xl" textTransform="capitalize">{category}</Text>
 			<div className="flex gap-4 w-full h-full">
 				<FilterBar products={p} />
 				<ProductList category={category} />
