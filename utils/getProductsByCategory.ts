@@ -1,0 +1,5 @@
+import { Product } from "@/types/product";
+
+export const getProductsByCategory = (products: Product[], category: string) => {
+	return products.filter((product) => product.category === category);
+};
