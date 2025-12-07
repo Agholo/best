@@ -1,0 +1,5 @@
+{
+  "hello": "Привет, мир!",
+  "welcome_user": "Привет, {{name}}!",
+  "search_placeholder": "Поиск"
+}

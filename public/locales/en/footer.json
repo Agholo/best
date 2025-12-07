@@ -1,0 +1,39 @@
+{
+	"shop": {
+		"title": "Shop",
+		"links": {
+			"all_products": "All Products",
+			"categories": "Categories",
+			"brands": "Brands",
+			"best_sellers": "Best Sellers"
+		}
+	},
+	"support": {
+		"title": "Support",
+		"links": {
+			"help_center": "Help Center",
+			"contact_us": "Contact Us",
+			"shipping_info": "Shipping info",
+			"returns": "Returns"
+		}
+	},
+	"company": {
+		"title": "Company",
+		"links": {
+			"about": "About",
+			"careers": "Careers",
+			"blog": "Blog",
+			"press": "Press"
+		}
+	},
+	"legal": {
+		"title": "Legal",
+		"links": {
+			"privacy_policy": "Privacy Policy",
+			"terms_of_service": "Terms of Service",
+			"cookie_policy": "Cookie Policy",
+			"accessibility": "Accessibility"
+		}
+	}
+}
+

@@ -1,0 +1,39 @@
+{
+	"shop": {
+		"title": "Магазин",
+		"links": {
+			"all_products": "Все товары",
+			"categories": "Категории",
+			"brands": "Бренды",
+			"best_sellers": "Бестселлеры"
+		}
+	},
+	"support": {
+		"title": "Поддержка",
+		"links": {
+			"help_center": "Центр помощи",
+			"contact_us": "Связаться с нами",
+			"shipping_info": "Информация о доставке",
+			"returns": "Возвраты"
+		}
+	},
+	"company": {
+		"title": "Компания",
+		"links": {
+			"about": "О нас",
+			"careers": "Карьера",
+			"blog": "Блог",
+			"press": "Пресса"
+		}
+	},
+	"legal": {
+		"title": "Правовая информация",
+		"links": {
+			"privacy_policy": "Политика конфиденциальности",
+			"terms_of_service": "Условия использования",
+			"cookie_policy": "Политика использования файлов cookie",
+			"accessibility": "Доступность"
+		}
+	}
+}
+

@@ -1,0 +1,39 @@
+{
+	"shop": {
+		"title": "Խանութ",
+		"links": {
+			"all_products": "Բոլոր ապրանքները",
+			"categories": "Կատեգորիաներ",
+			"brands": "Բրենդներ",
+			"best_sellers": "Ամենավաճառվող"
+		}
+	},
+	"support": {
+		"title": "Աջակցություն",
+		"links": {
+			"help_center": "Օգնության կենտրոն",
+			"contact_us": "Կապ մեզ հետ",
+			"shipping_info": "Առաքման տեղեկություն",
+			"returns": "Վերադարձներ"
+		}
+	},
+	"company": {
+		"title": "Ընկերություն",
+		"links": {
+			"about": "Մեր մասին",
+			"careers": "Կարիերա",
+			"blog": "Բլոգ",
+			"press": "Մամուլ"
+		}
+	},
+	"legal": {
+		"title": "Իրավական",
+		"links": {
+			"privacy_policy": "Գաղտնիության քաղաքականություն",
+			"terms_of_service": "Ծառայությունների պայմաններ",
+			"cookie_policy": "Cookie-ների քաղաքականություն",
+			"accessibility": "Հասանելիություն"
+		}
+	}
+}
+
