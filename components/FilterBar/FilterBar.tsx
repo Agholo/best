@@ -1,7 +1,6 @@
 "use client";
 
 import useFilter from "@/hooks/useFilter";
-import { Product } from "@/types/product";
 import { Accordion } from "@/ui/Accordion";
 import AccordionItem from "@/components/AccordionItem";
 import { Label } from "@/ui/label";
@@ -9,11 +8,17 @@ import { Checkbox } from "@/ui/Checkbox";
 import { Slider } from "@/ui/slider";
 import { useState } from "react";
 import { Product as ProductType } from "@/types/product";
+import { getProductsByCategory } from "@/utils/getProductsByCategory";
+import { products as mockProducts } from "@/mock/products";
 
-export default function FilterBar({ products }: { products: Product[] }) {
+export default function FilterBar({ category }: { category: string }) {
+	const products = getProductsByCategory(mockProducts, category);
 	const { filters, setFilters, filterableFields } = useFilter(products);
+	console.log(filters);
 	const currentPriceFilter = filters.price || "";
+	console.log(products);
 	const getPriceFromFilter = (): { min: string; max: string } => {
+		console.log(filterableFields.price);
 		if (currentPriceFilter) {
 			const [min, max] = currentPriceFilter.split("-");
 			return { min, max };
@@ -76,8 +81,8 @@ export default function FilterBar({ products }: { products: Product[] }) {
 										onValueCommit={handlePriceCommit}
 									/>
 									<div className="flex items-center justify-between my-2">
-										<p>{value.min}</p>
-										<p>{value.max}</p>
+										<p>{price.min}</p>
+										<p>{price.max}</p>
 									</div>
 								</div>
 							)}

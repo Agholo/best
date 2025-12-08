@@ -1,14 +1,11 @@
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/ui/Breadcrumb";
 import Link from "next/link";
 import Text from "@/ui/Text";
-import { products } from "@/mock/products";
-import { getProductsByCategory } from "@/utils/getProductsByCategory";
 import FilterBar from "@/components/FilterBar/FilterBar";
 import ProductList from "@/components/ProductList/ProductList";
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug: category } = await params;
-	const p = getProductsByCategory(products, category);
 
 	return (
 		<div>
@@ -33,7 +30,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 			</Breadcrumb>
 			<Text size="3xl" textTransform="capitalize">{category}</Text>
 			<div className="flex gap-4 w-full h-full">
-				<FilterBar products={p} />
+				<FilterBar category={category} />
 				<ProductList category={category} />
 			</div>
 		</div>
