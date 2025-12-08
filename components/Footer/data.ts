@@ -1,7 +1,5 @@
 import { FooterInfoGroup } from "./types";
 
-import { FooterInfoGroup } from "./types";
-
 export const footerInfoGroups: FooterInfoGroup[] = [
 	{
 		titleKey: "shop.title",
