@@ -1,13 +1,13 @@
 import { faker } from "@faker-js/faker";
 
 const brands = [
-	"Apple",
-	"Samsung",
-	"Google",
-	"Microsoft",
-	"Lenovo",
-	"Dell",
-	"HP",
+	"apple",
+	"samsung",
+	"google",
+	"microsoft",
+	"lenovo",
+	"dell",
+	"hp",
 ];
 
 const categories = [

@@ -76,8 +76,8 @@ export default function FilterBar({ products }: { products: Product[] }) {
 										onValueCommit={handlePriceCommit}
 									/>
 									<div className="flex items-center justify-between my-2">
-										<p>{price.min}</p>
-										<p>{price.max}</p>
+										<p>{value.min}</p>
+										<p>{value.max}</p>
 									</div>
 								</div>
 							)}

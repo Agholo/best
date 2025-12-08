@@ -39,10 +39,6 @@ export default function useFilter(products: Product[]) {
 	});
 	const filterableFields = getProductFilterableFields(products);
 
-	console.log(filterableFields, "filterableFields");
-	console.log(typedFilters, "filters");
-	console.log(filteredProducts, "filteredProducts");
-
 	return {
 		filters: typedFilters,
 		setFilters: typedSetFilters,
