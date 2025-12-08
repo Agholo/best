@@ -14,14 +14,13 @@ import { products as mockProducts } from "@/mock/products";
 export default function FilterBar({ category }: { category: string }) {
 	const products = getProductsByCategory(mockProducts, category);
 	const { filters, setFilters, filterableFields } = useFilter(products);
-	console.log(filters);
 	const currentPriceFilter = filters.price || "";
-	console.log(products);
 	const getPriceFromFilter = (): { min: string; max: string } => {
-		console.log(filterableFields.price);
 		if (currentPriceFilter) {
 			const [min, max] = currentPriceFilter.split("-");
-			return { min, max };
+			const camperedMax = Math.min(Number(max), Number(filterableFields.price.max));
+			const camperedMin = Math.max(Number(min), Number(filterableFields.price.min));
+			return { min: String(camperedMin), max: String(camperedMax) };
 		}
 		return { min: filterableFields.price.min, max: filterableFields.price.max };
 	};
