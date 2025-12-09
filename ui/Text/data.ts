@@ -1,9 +1,10 @@
 import { TextProps } from "./types";
 
 export const sizeMap: Record<NonNullable<TextProps["size"]>, string> = {
+  xxs: "text-[10px]",
   xs: "text-xs",
   sm: "text-sm",
-  md: "text-base",
+  md: "text-md",
   lg: "text-lg",
   xl: "text-xl",
   "2xl": "text-2xl",
@@ -21,7 +22,7 @@ export const weightMap: Record<NonNullable<TextProps["weight"]>, string> = {
 };
 
 export const colorMap: Record<NonNullable<TextProps["color"]>, string> = {
-  primary: "text-text-primary",
+  primary: "text-primary",
   secondary: "text-secondary",
   accent: "text-text-accent",
   tint1: "text-text-tint1",

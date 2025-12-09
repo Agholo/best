@@ -1,7 +1,7 @@
 
 import { useRouter, redirect } from "next/navigation";
 
-export default function useRedirect(action?: "push" | "replace") {
+export default function useRedirect(action: "push" | "replace" = 'push') {
 	const router = useRouter();
 
 	const actionMap = {
@@ -11,7 +11,7 @@ export default function useRedirect(action?: "push" | "replace") {
 
 	return {
 		refresh: () => router.refresh(),
-		navigate: (path: string) => actionMap[action || "push"](path),
+		navigate: (path: string) => actionMap[action](path),
 		redirect: (path: string) => redirect(path),
 	}
 }
