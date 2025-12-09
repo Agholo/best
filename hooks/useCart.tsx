@@ -18,6 +18,8 @@ interface CartState {
 	isInCart: (productId: string) => boolean;
 	getTotalItems: () => number;
 	getTotalPrice: () => string;
+	getItemQuantity: (productId: string) => number;
+	getCartItem: (productId: string) => CartItem | undefined;
 }
 
 const useCart = create<CartState>()(
