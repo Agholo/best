@@ -4,6 +4,7 @@ import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import LanguageSwitcher from "../LanguageSwitcher";
 import CartIcon from "./CartIcon";
 import Link from "next/link";
+import User from "@/components/User";
 
 export default function Header() {
   return (
@@ -17,6 +18,7 @@ export default function Header() {
           <CartIcon />
           <ThemeSwitcher />
           <LanguageSwitcher />
+          <User />
         </div>
       </div>
     </header>
