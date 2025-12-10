@@ -16,6 +16,7 @@ export interface TextProps {
  * Text size
  * @description The size of the text
  * @example
+ * xxs -> 10px
  * xs -> 12px
  * sm -> 14px
  * md -> 16px
@@ -27,7 +28,7 @@ export interface TextProps {
  * 5xl -> 64px
  * 6xl -> 72px
  */
-export type TextSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
+export type TextSize = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
 
 /**
  * Text weight
