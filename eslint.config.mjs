@@ -21,6 +21,13 @@ const eslintConfig = defineConfig([
 			"no-multiple-empty-lines": ["error", { max: 1, maxEOF: 1 }],
 		},
 	},
+	// Config files should use spaces
+	{
+		files: ["eslint.config.mjs", "*.config.*", "*.config.js", "*.config.ts"],
+		rules: {
+			indent: ["error", 2],
+		},
+	},
 ]);
 
 export default eslintConfig;
