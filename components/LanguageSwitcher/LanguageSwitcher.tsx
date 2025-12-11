@@ -9,18 +9,18 @@ export default function LanguageSwitcher() {
 
 	if (!languages || !languages.length) return null;
 
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
+	return (
+		<DropdownMenu>
+			<DropdownMenuTrigger>
 				{i18n.language}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent>
 				{languages?.map(l => (
 					<DropdownMenuItem key={l} onClick={() => i18n.changeLanguage(l)}>
 						{l}
 					</DropdownMenuItem>
 				))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
+			</DropdownMenuContent>
+		</DropdownMenu>
+	);
 }

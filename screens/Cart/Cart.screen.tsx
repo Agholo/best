@@ -16,9 +16,9 @@ export default function CartScreen() {
 		navigate("/checkout");
 	};
 
-  return (
-    <div className="w-full">
-      <Text type="h1" size="5xl" weight="bold">Your Cart</Text>
+	return (
+		<div className="w-full">
+			<Text type="h1" size="5xl" weight="bold">Your Cart</Text>
 			<div className="flex gap-4 relative">
 				<div className="flex flex-col gap-4 w-3/4">
 					{items.map((item) => (
@@ -87,6 +87,6 @@ export default function CartScreen() {
 					</Card>
 				</div>
 			</div>
-    </div>
-  );
+		</div>
+	);
 }

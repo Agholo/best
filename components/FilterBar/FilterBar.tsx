@@ -37,7 +37,7 @@ export default function FilterBar({ category }: { category: string }) {
 	const handleCheckboxChange = (filterKey: keyof ProductType["filterable"], item: string, checked: boolean): void => {
 		const currentFilter = filters[filterKey];
 		const currentArray = Array.isArray(currentFilter) ? currentFilter : [];
-		
+
 		if (checked) {
 			setFilters({ [filterKey]: [...currentArray, item] });
 		} else {

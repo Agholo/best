@@ -15,7 +15,7 @@ export default function useFilter(products: Product[]) {
 	const parsers = Object.fromEntries(
 		filterableKeys.map((key) => [
 			key,
-			key === "price" 
+			key === "price"
 				? parseAsString.withDefault("")
 				: parseAsArrayOf(parseAsString).withDefault([])
 		])

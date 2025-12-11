@@ -7,7 +7,7 @@ export default function AccordionItem({ title, children }: AccordionProps) {
 		<AccordionUiItem value={title}>
 			<AccordionTrigger>{title}</AccordionTrigger>
 			<AccordionContent>
-					{children}
+				{children}
 			</AccordionContent>
 		</AccordionUiItem>
 	);
