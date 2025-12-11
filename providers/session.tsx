@@ -8,7 +8,7 @@ type SessionProviderProps = {
 };
 
 export default function SessionProviderWrapper({
-  children,
+	children,
 }: SessionProviderProps) {
-  return <SessionProvider>{children}</SessionProvider>;
+	return <SessionProvider>{children}</SessionProvider>;
 }
