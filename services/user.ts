@@ -1,14 +1,6 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
-
-export type User = {
-  id: string;
-  email: string;
-  password: string;
-  name: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-};
+import { User } from "@/types/user";
 
 export async function createUser(
   email: string,

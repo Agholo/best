@@ -5,7 +5,6 @@ import languageDetector from "i18next-browser-languagedetector";
 
 const supportedLngs = ["en", "am", "ru"];
 
-
 const initOptions = {
   backend: {
     loadPath: "/locales/{{lng}}/{{ns}}.json",
@@ -30,8 +29,8 @@ const initOptions = {
 };
 
 i18n
-	.use(languageDetector)
-	.use(HttpBackend)
+  .use(languageDetector)
+  .use(HttpBackend)
   .use(initReactI18next)
   .init(initOptions);
 

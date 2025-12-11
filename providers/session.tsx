@@ -12,4 +12,3 @@ export default function SessionProviderWrapper({
 }: SessionProviderProps) {
   return <SessionProvider>{children}</SessionProvider>;
 }
-

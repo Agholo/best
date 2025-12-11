@@ -3,9 +3,9 @@
 import useRedirect from "@/hooks/useRedirect";
 
 export default function NotFound() {
-	const { redirect } = useRedirect();
+  const { redirect } = useRedirect();
 
-	redirect("/home");
+  redirect("/home");
 
-	return null;
+  return null;
 }

@@ -34,7 +34,7 @@ export default function User() {
     .slice(0, 2) || session.user?.email?.[0].toUpperCase() || "U";
 
   return (
-		<Popover>
+    <Popover>
       <PopoverTrigger asChild>
         <Avatar>
           <AvatarFallback>{userInitials}</AvatarFallback>
@@ -46,4 +46,3 @@ export default function User() {
     </Popover>
   );
 }
-

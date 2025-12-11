@@ -8,7 +8,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import SessionProviderWrapper from "@/providers/session";
 
 export default function Root({ children }: RootProps) {
-	const { theme } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <SessionProviderWrapper>

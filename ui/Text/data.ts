@@ -38,7 +38,7 @@ export const alignMap: Record<NonNullable<TextProps["align"]>, string> = {
 };
 
 export const lineHeightMap: Record<NonNullable<TextProps["lineHeight"]>, string> = {
-	none: "leading-none",
+  none: "leading-none",
   normal: "leading-normal",
   relaxed: "leading-relaxed",
   tight: "leading-tight",

@@ -1,38 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createUser } from "@/services/user";
+import { signupSchema } from "@/app/auth/schemas";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { email, password, name } = body;
 
-    // Validate input
-    if (!email || !password) {
+    // Validate input using zod schema
+    const validationResult = signupSchema.safeParse({
+      email,
+      password,
+      name: name || undefined,
+    });
+
+    if (!validationResult.success) {
+      const firstError = validationResult.error.issues[0];
       return NextResponse.json(
-        { error: "Email and password are required" },
+        { error: firstError.message },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email format" },
-        { status: 400 }
-      );
-    }
-
-    // Validate password length
-    if (password.length < 6) {
-      return NextResponse.json(
-        { error: "Password must be at least 6 characters" },
-        { status: 400 }
-      );
-    }
-
-    // Create user
-    const result = await createUser(email, password, name);
+    // Create user with validated data
+    const validatedData = validationResult.data;
+    const result = await createUser(
+      validatedData.email,
+      validatedData.password,
+      validatedData.name
+    );
 
     if (result.error) {
       return NextResponse.json(
@@ -53,4 +49,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
