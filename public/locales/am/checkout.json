@@ -83,6 +83,7 @@
 		"shipping_method": "Ստանդարտ Առաքում",
 		"shipping_duration_info": "Մոտավոր առաքում: 3-5 աշխատանքային օր",
 		"payment_information": "Վճարման Տեղեկություն",
+		"quantity": "Քանակ",
 		"payment_method": {
 			"card": "Վարկային կամ Դեբետային Քարտ",
 			"paypal": "PayPal",

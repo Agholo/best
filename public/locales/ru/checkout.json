@@ -83,6 +83,7 @@
 		"shipping_method": "Стандартная Доставка",
 		"shipping_duration_info": "Примерная доставка: 3-5 рабочих дней",
 		"payment_information": "Информация об Оплате",
+		"quantity": "Количество",
 		"payment_method": {
 			"card": "Кредитная или Дебетовая Карта",
 			"paypal": "PayPal",

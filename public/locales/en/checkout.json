@@ -83,6 +83,7 @@
 		"shipping_method": "Standard Shipping",
 		"shipping_duration_info": "Estimated delivery: 3-5 business days",
 		"payment_information": "Payment Information",
+		"quantity": "Quantity",
 		"payment_method": {
 			"card": "Credit or Debit Card",
 			"paypal": "PayPal",
