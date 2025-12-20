@@ -1,0 +1,95 @@
+{
+	"cart": {
+		"title": "Ваша Корзина"
+	},
+	"order_summary": {
+		"title": "Сводка Заказа",
+		"subtotal": "Промежуточный итог",
+		"shipping": "Доставка",
+		"free": "Бесплатно",
+		"continue_to_checkout": "Перейти к Оформлению",
+		"free_returns": "Бесплатный возврат",
+		"secure_payment": "Безопасная оплата"
+	},
+	"payment": {
+		"methods": {
+			"card": "Кредитная или Дебетовая Карта",
+			"paypal": "PayPal",
+			"apple_pay": "Apple Pay",
+			"google_pay": "Google Pay"
+		},
+		"descriptions": {
+			"paypal": "Безопасное перенаправление на PayPal",
+			"apple_pay": "Быстрая и безопасная оплата цифровым кошельком",
+			"google_pay": "Быстрая и безопасная оплата цифровым кошельком"
+		},
+		"card_form": {
+			"card_number": "Номер Карты",
+			"card_number_placeholder": "1234 5678 9012 3456",
+			"name_on_card": "Имя на Карте",
+			"name_on_card_placeholder": "Иван Иванов",
+			"expiration_date": "Срок Действия",
+			"expiration_date_placeholder": "ММ/ГГ",
+			"cvv": "CVV/CVC",
+			"cvv_placeholder": "123"
+		},
+		"errors": {
+			"name_on_card_required": "Имя на карте обязательно",
+			"name_on_card_min_length": "Имя должно содержать не менее 2 символов",
+			"name_on_card_invalid": "Имя может содержать только буквы, пробелы, дефисы и апострофы",
+			"card_number_required": "Номер карты обязателен",
+			"card_number_format": "Номер карты должен содержать только цифры",
+			"card_number_length": "Номер карты должен содержать от 13 до 19 цифр",
+			"card_number_invalid": "Неверный номер карты",
+			"expiration_date_required": "Срок действия обязателен",
+			"expiration_date_format": "Срок действия должен быть в формате ММ/ГГ",
+			"expiration_date_expired": "Карта просрочена или неверная дата",
+			"cvv_required": "CVV/CVC обязателен",
+			"cvv_format": "CVV должен содержать только цифры",
+			"cvv_length": "CVV должен содержать 3 или 4 цифры"
+		}
+	},
+	"address": {
+		"full_name": "Полное Имя",
+		"full_name_placeholder": "Иван Иванов",
+		"phone": "Телефон",
+		"phone_placeholder": "+37477777777",
+		"email": "Электронная Почта",
+		"email_placeholder": "ivan.ivanov@example.com",
+		"city": "Город/Село",
+		"city_placeholder": "Ереван, Армавир и т.д.",
+		"address": "Адрес",
+		"address_placeholder": "123 Главная Улица",
+		"errors": {
+			"full_name_required": "Полное имя обязательно",
+			"phone_required": "Телефон обязателен",
+			"email_required": "Электронная почта обязательна",
+			"email_invalid": "Неверный адрес электронной почты",
+			"city_required": "Город/Село обязательно",
+			"address_required": "Адрес обязателен"
+		}
+	},
+	"footer": {
+		"back_to": "Назад к",
+		"continue_to": "Продолжить к",
+		"cart": "Корзина",
+		"complete": "Завершить"
+	},
+	"review": {
+		"title": "Проверьте Ваш Заказ",
+		"description": "Пожалуйста, проверьте детали заказа перед завершением покупки",
+		"items_in_your_order": "Товары в Вашем Заказе",
+		"shipping_information": "Информация о Доставке",
+		"shipping_method": "Стандартная Доставка",
+		"shipping_duration_info": "Примерная доставка: 3-5 рабочих дней",
+		"payment_information": "Информация об Оплате",
+		"payment_method": {
+			"card": "Кредитная или Дебетовая Карта",
+			"paypal": "PayPal",
+			"applePay": "Apple Pay",
+			"googlePay": "Google Pay"
+		},
+		"delivery_address": "Адрес Доставки"
+	}
+}
+

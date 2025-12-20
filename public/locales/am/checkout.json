@@ -1,0 +1,95 @@
+{
+	"cart": {
+		"title": "Ձեր Զամբյուղը"
+	},
+	"order_summary": {
+		"title": "Պատվերի Ամփոփում",
+		"subtotal": "Ենթագումար",
+		"shipping": "Առաքում",
+		"free": "Անվճար",
+		"continue_to_checkout": "Շարունակել Վճարման",
+		"free_returns": "Անվճար վերադարձ",
+		"secure_payment": "Անվտանգ վճարում"
+	},
+	"payment": {
+		"methods": {
+			"card": "Վարկային կամ Դեբետային Քարտ",
+			"paypal": "PayPal",
+			"apple_pay": "Apple Pay",
+			"google_pay": "Google Pay"
+		},
+		"descriptions": {
+			"paypal": "Անվտանգ վերահղում PayPal-ին",
+			"apple_pay": "Արագ և անվտանգ թվային դրամապանակի վճարում",
+			"google_pay": "Արագ և անվտանգ թվային դրամապանակի վճարում"
+		},
+		"card_form": {
+			"card_number": "Քարտի Համար",
+			"card_number_placeholder": "1234 5678 9012 3456",
+			"name_on_card": "Անուն Քարտի Վրա",
+			"name_on_card_placeholder": "Ջոն Դոու",
+			"expiration_date": "Վավերականության Օր",
+			"expiration_date_placeholder": "ԱԱ/ՏՏ",
+			"cvv": "CVV/CVC",
+			"cvv_placeholder": "123"
+		},
+		"errors": {
+			"name_on_card_required": "Քարտի վրա անունը պարտադիր է",
+			"name_on_card_min_length": "Անունը պետք է լինի առնվազն 2 նիշ",
+			"name_on_card_invalid": "Անունը կարող է պարունակել միայն տառեր, բացատներ, գծիկներ և ապոստրոֆներ",
+			"card_number_required": "Քարտի համարը պարտադիր է",
+			"card_number_format": "Քարտի համարը պետք է պարունակի միայն թվեր",
+			"card_number_length": "Քարտի համարը պետք է լինի 13-19 նիշ",
+			"card_number_invalid": "Անվավեր քարտի համար",
+			"expiration_date_required": "Վավերականության օրը պարտադիր է",
+			"expiration_date_format": "Վավերականության օրը պետք է լինի ԱԱ/ՏՏ ձևաչափով",
+			"expiration_date_expired": "Քարտը ժամկետանց է կամ անվավեր ամսաթիվ",
+			"cvv_required": "CVV/CVC-ն պարտադիր է",
+			"cvv_format": "CVV-ն պետք է պարունակի միայն թվեր",
+			"cvv_length": "CVV-ն պետք է լինի 3 կամ 4 նիշ"
+		}
+	},
+	"address": {
+		"full_name": "Ամբողջ Անուն",
+		"full_name_placeholder": "Ջոն Դոու",
+		"phone": "Հեռախոս",
+		"phone_placeholder": "+37477777777",
+		"email": "Էլ. Փոստ",
+		"email_placeholder": "john.doe@example.com",
+		"city": "Քաղաք/Գյուղ",
+		"city_placeholder": "Երևան, Արմավիր և այլն",
+		"address": "Հասցե",
+		"address_placeholder": "123 Գլխավոր Փողոց",
+		"errors": {
+			"full_name_required": "Ամբողջ անունը պարտադիր է",
+			"phone_required": "Հեռախոսը պարտադիր է",
+			"email_required": "Էլ. փոստը պարտադիր է",
+			"email_invalid": "Անվավեր էլ. փոստի հասցե",
+			"city_required": "Քաղաք/Գյուղը պարտադիր է",
+			"address_required": "Հասցեն պարտադիր է"
+		}
+	},
+	"footer": {
+		"back_to": "Վերադառնալ",
+		"continue_to": "Շարունակել",
+		"cart": "Զամբյուղ",
+		"complete": "Ավարտել"
+	},
+	"review": {
+		"title": "Վերանայեք Ձեր Պատվերը",
+		"description": "Խնդրում ենք վերանայել ձեր պատվերի մանրամասները գնումն ավարտելուց առաջ",
+		"items_in_your_order": "Ձեր Պատվերի Ապրանքները",
+		"shipping_information": "Առաքման Տեղեկություն",
+		"shipping_method": "Ստանդարտ Առաքում",
+		"shipping_duration_info": "Մոտավոր առաքում: 3-5 աշխատանքային օր",
+		"payment_information": "Վճարման Տեղեկություն",
+		"payment_method": {
+			"card": "Վարկային կամ Դեբետային Քարտ",
+			"paypal": "PayPal",
+			"applePay": "Apple Pay",
+			"googlePay": "Google Pay"
+		},
+		"delivery_address": "Առաքման Հասցե"
+	}
+}
+

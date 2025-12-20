@@ -10,8 +10,10 @@ import { Button } from "@/ui/Button";
 import useCart from "@/hooks/useCart";
 import { FilteredProduct } from "@/types/product";
 import { MinusIcon, PlusIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function ProductList({ category }: { category: string }) {
+	const { t } = useTranslation("category");
 	const items = getProductsByCategory(mockProducts, category);
 	const { filteredProducts } = useFilter(items);
 	const products = spreadProductFilterables(filteredProducts);
@@ -36,7 +38,7 @@ export default function ProductList({ category }: { category: string }) {
 							<Text>{getItemQuantity(item.id)}</Text>
 							<Button variant="outline" onClick={() => handleAddToCart(item)}><PlusIcon /></Button>
 						</div> :
-						<Button onClick={() => handleAddToCart(item)}>Add to Cart</Button>}
+						<Button onClick={() => handleAddToCart(item)}>{t("product.add_to_cart")}</Button>}
 				</div>
 			))}
 		</div>

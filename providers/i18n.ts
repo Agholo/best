@@ -14,7 +14,7 @@ const initOptions = {
 	debug: process.env.NODE_ENV === "development",
 	load: "languageOnly" as const,
 	defaultNS: "common",
-	ns: ["common", "footer", "categories", "hero"],
+	ns: ["common", "footer", "categories", "hero", "checkout", "auth", "category", "product"],
 	interpolation: {
 		escapeValue: false,
 	},

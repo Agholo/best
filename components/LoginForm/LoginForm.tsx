@@ -8,9 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginFormData } from "@/app/auth/schemas";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export default function LoginForm() {
 	const router = useRouter();
+	const { t } = useTranslation("auth");
 	const {
 		register,
 		handleSubmit,
@@ -30,7 +32,7 @@ export default function LoginForm() {
 
 			if (result?.error) {
 				setError("root", {
-					message: "Invalid email or password",
+					message: t("login.errors.invalid_credentials"),
 				});
 				return;
 			}
@@ -39,7 +41,7 @@ export default function LoginForm() {
 			router.refresh();
 		} catch {
 			setError("root", {
-				message: "An error occurred. Please try again.",
+				message: t("login.errors.error_occurred"),
 			});
 		}
 	};
@@ -47,11 +49,11 @@ export default function LoginForm() {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 			<Field>
-				<FieldLabel>Email</FieldLabel>
+				<FieldLabel>{t("login.email")}</FieldLabel>
 				<FieldContent>
 					<Input
 						type="email"
-						placeholder="you@example.com"
+						placeholder={t("login.email_placeholder")}
 						disabled={isSubmitting}
 						{...register("email")}
 					/>
@@ -64,11 +66,11 @@ export default function LoginForm() {
 			</Field>
 
 			<Field>
-				<FieldLabel>Password</FieldLabel>
+				<FieldLabel>{t("login.password")}</FieldLabel>
 				<FieldContent>
 					<Input
 						type="password"
-						placeholder="••••••••"
+						placeholder={t("login.password_placeholder")}
 						disabled={isSubmitting}
 						{...register("password")}
 					/>
@@ -87,7 +89,7 @@ export default function LoginForm() {
 			)}
 
 			<Button type="submit" className="w-full" disabled={isSubmitting}>
-				{isSubmitting ? "Signing in..." : "Login"}
+				{isSubmitting ? t("login.button_loading") : t("login.button")}
 			</Button>
 		</form>
 	);

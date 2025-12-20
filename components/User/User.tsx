@@ -4,9 +4,11 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { Avatar, AvatarFallback } from "@/ui/Avatar";
 import { Button } from "@/ui/Button";
 import { PopoverTrigger, PopoverContent, Popover } from "@/ui/Popover";
+import { useTranslation } from "react-i18next";
 
 export default function User() {
 	const { data: session, status } = useSession();
+	const { t } = useTranslation("auth");
 
 	if (status === "loading") {
 		return (
@@ -21,7 +23,7 @@ export default function User() {
 	if (!session) {
 		return (
 			<Button onClick={() => signIn()} variant="outline" size="sm">
-        Sign In
+				{t("user.sign_in")}
 			</Button>
 		);
 	}
@@ -41,7 +43,7 @@ export default function User() {
 				</Avatar>
 			</PopoverTrigger>
 			<PopoverContent className="w-80">
-				<Button onClick={() => signOut()}>Sign Out</Button>
+				<Button onClick={() => signOut()}>{t("user.sign_out")}</Button>
 			</PopoverContent>
 		</Popover>
 	);

@@ -1,0 +1,19 @@
+{
+	"breadcrumb": {
+		"home": "Главная",
+		"categories": "Категории"
+	},
+	"filters": "Фильтры",
+	"product": {
+		"add_to_cart": "Добавить в Корзину"
+	},
+	"checkout": {
+		"title": "Оформление Заказа"
+	},
+	"steps": {
+		"address": "Адрес",
+		"payment": "Оплата",
+		"review": "Проверка"
+	}
+}
+

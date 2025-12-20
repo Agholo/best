@@ -9,9 +9,11 @@ import { signupSchema, type SignupFormData } from "@/app/auth/schemas";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function SignupForm() {
 	const router = useRouter();
+	const { t } = useTranslation("auth");
 	const {
 		register,
 		handleSubmit,
@@ -39,7 +41,7 @@ export default function SignupForm() {
 
 			if (signInResult?.error) {
 				setError("root", {
-					message: "Account created but failed to sign in. Please try logging in.",
+					message: t("signup.errors.account_created_signin_failed"),
 				});
 				return;
 			}
@@ -50,11 +52,11 @@ export default function SignupForm() {
 		} catch (error) {
 			if (axios.isAxiosError(error) && error.response) {
 				setError("root", {
-					message: error.response.data?.error || "An error occurred during signup",
+					message: error.response.data?.error || t("signup.errors.signup_error"),
 				});
 			} else {
 				setError("root", {
-					message: "An error occurred. Please try again.",
+					message: t("signup.errors.error_occurred"),
 				});
 			}
 		}
@@ -63,11 +65,11 @@ export default function SignupForm() {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 			<Field>
-				<FieldLabel>Name (Optional)</FieldLabel>
+				<FieldLabel>{t("signup.name")}</FieldLabel>
 				<FieldContent>
 					<Input
 						type="text"
-						placeholder="Your name"
+						placeholder={t("signup.name_placeholder")}
 						disabled={isSubmitting}
 						{...register("name")}
 					/>
@@ -80,11 +82,11 @@ export default function SignupForm() {
 			</Field>
 
 			<Field>
-				<FieldLabel>Email</FieldLabel>
+				<FieldLabel>{t("signup.email")}</FieldLabel>
 				<FieldContent>
 					<Input
 						type="email"
-						placeholder="you@example.com"
+						placeholder={t("signup.email_placeholder")}
 						disabled={isSubmitting}
 						{...register("email")}
 					/>
@@ -97,11 +99,11 @@ export default function SignupForm() {
 			</Field>
 
 			<Field>
-				<FieldLabel>Password</FieldLabel>
+				<FieldLabel>{t("signup.password")}</FieldLabel>
 				<FieldContent>
 					<Input
 						type="password"
-						placeholder="••••••••"
+						placeholder={t("signup.password_placeholder")}
 						disabled={isSubmitting}
 						{...register("password")}
 					/>
@@ -120,7 +122,7 @@ export default function SignupForm() {
 			)}
 
 			<Button type="submit" className="w-full" disabled={isSubmitting}>
-				{isSubmitting ? "Creating account..." : "Sign Up"}
+				{isSubmitting ? t("signup.button_loading") : t("signup.button")}
 			</Button>
 		</form>
 	);

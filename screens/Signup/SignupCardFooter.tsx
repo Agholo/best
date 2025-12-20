@@ -1,18 +1,21 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export default function SignupCardFooter() {
 	const router = useRouter();
+	const { t } = useTranslation("auth");
+
 	return (
 		<p className="text-center text-sm text-muted-foreground">
-      Already have an account?{" "}
+			{t("signup.has_account")}{" "}
 			<button
 				type="button"
 				onClick={() => router.push("/auth/login")}
 				className="text-primary hover:underline"
 			>
-        Sign in
+				{t("signup.sign_in")}
 			</button>
 		</p>
 	);
