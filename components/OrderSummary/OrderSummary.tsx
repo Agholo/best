@@ -10,7 +10,7 @@ export default function OrderSummary({ totalPrice, onContinueToCheckout }: Order
 	const { t } = useTranslation("checkout");
 
 	return (
-		<Card className="w-full h-fit">
+		<Card className="mw-1/4 sticky top-4 right-0 h-fit">
 			<CardHeader>
 				<CardTitle>
 					<Text type="h2" size="xl" weight="bold" className="sm:text-2xl">{t("order_summary.title")}</Text>
