@@ -3,25 +3,29 @@
 import { useCheckoutSteps } from "@/hooks/useCheckoutSteps";
 import { Field, FieldContent, FieldLabel, FieldSet, FieldError, FieldGroup } from "@/ui/field";
 import Input from "@/ui/Input";
-import { Activity } from "react";
+import { Activity, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addressFormSchema, type AddressFormData } from "./types";
 import { useSession } from "next-auth/react";
 import { useTranslation } from "react-i18next";
 import useCheckout from "@/hooks/useCheckout";
+import useCheckoutValidation from "@/hooks/useCheckoutValidation";
 
 export default function AddressForm() {
 	const { currentStep } = useCheckoutSteps();
 	const { data } = useSession();
 	const { t } = useTranslation("checkout");
 	const { setAddress, address } = useCheckout();
+	const { setAddressFormValid } = useCheckoutValidation();
 	const {
 		register,
-		formState: { errors },
+		formState: { errors, isValid },
 		getValues,
+		trigger,
 	} = useForm<AddressFormData>({
 		resolver: zodResolver(addressFormSchema),
+		mode: "onChange",
 		defaultValues: {
 			fullName: address?.fullName || data?.user?.name || "",
 			email: address?.email || data?.user?.email || "",
@@ -31,7 +35,12 @@ export default function AddressForm() {
 		},
 	});
 
-	const handleFieldChange = (): void => {
+	// Update validation state when form validity changes
+	useEffect(() => {
+		setAddressFormValid(isValid);
+	}, [isValid, setAddressFormValid]);
+
+	const handleFieldChange = async (): Promise<void> => {
 		const formData = getValues();
 		setAddress({
 			fullName: formData.fullName || "",
@@ -40,6 +49,8 @@ export default function AddressForm() {
 			city: formData.city || "",
 			address: formData.address || "",
 		});
+		// Trigger validation after saving
+		await trigger();
 	};
 
 	return (
@@ -53,6 +64,7 @@ export default function AddressForm() {
 							placeholder={t("address.full_name_placeholder")}
 							{...register("fullName", {
 								onChange: handleFieldChange,
+								onBlur: handleFieldChange,
 							})}
 						/>
 						{errors.fullName && (
@@ -69,6 +81,7 @@ export default function AddressForm() {
 								placeholder={t("address.phone_placeholder")}
 								{...register("phone", {
 									onChange: handleFieldChange,
+									onBlur: handleFieldChange,
 								})}
 							/>
 							{errors.phone && (
@@ -84,6 +97,7 @@ export default function AddressForm() {
 								placeholder={t("address.email_placeholder")}
 								{...register("email", {
 									onChange: handleFieldChange,
+									onBlur: handleFieldChange,
 								})}
 							/>
 							{errors.email && (
@@ -101,6 +115,7 @@ export default function AddressForm() {
 								placeholder={t("address.city_placeholder")}
 								{...register("city", {
 									onChange: handleFieldChange,
+									onBlur: handleFieldChange,
 								})}
 							/>
 							{errors.city && (
@@ -116,6 +131,7 @@ export default function AddressForm() {
 								placeholder={t("address.address_placeholder")}
 								{...register("address", {
 									onChange: handleFieldChange,
+									onBlur: handleFieldChange,
 								})}
 							/>
 							{errors.address && (

@@ -25,7 +25,7 @@ const useCheckout = create<CheckoutState>()(
 	persist(
 		(set, get) => ({
 			address: null,
-			paymentMethod: null,
+			paymentMethod: "card",
 			paymentDetails: null,
 			setAddress: (address: AddressFormData) => {
 				set({ address });

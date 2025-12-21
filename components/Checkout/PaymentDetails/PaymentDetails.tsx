@@ -10,18 +10,28 @@ import PaymentMethodItem from "./PaymentMethodItem";
 import CardFormFields from "./CardFormFields";
 import { useTranslation } from "react-i18next";
 import useCheckout, { PaymentMethod } from "@/hooks/useCheckout";
+import useCheckoutValidation from "@/hooks/useCheckoutValidation";
 
 export default function PaymentDetails() {
 	const { currentStep } = useCheckoutSteps();
 	const { t } = useTranslation("checkout");
 	const { paymentMethod, setPaymentMethod, setPaymentDetails, paymentDetails } = useCheckout();
+	const { setPaymentFormValid } = useCheckoutValidation();
 
-	const onSelectMethod = (method: string): void => {
+	const onSelectMethod = async (method: string): Promise<void> => {
 		setPaymentMethod(method as PaymentMethod);
+		// If switching away from card, mark form as valid (no validation needed)
+		if (method !== "card") {
+			setPaymentFormValid(true);
+		} else {
+			// If switching to card, trigger validation
+			await trigger();
+		}
 	};
 
-	const { register, formState: { errors }, control, setValue } = useForm<PaymentDetailsData>({
+	const { register, formState: { errors, isValid }, control, setValue, trigger } = useForm<PaymentDetailsData>({
 		resolver: zodResolver(paymentDetailsSchema),
+		mode: "onChange",
 		defaultValues: {
 			nameOnCard: paymentDetails?.nameOnCard || "",
 			cardNumber: paymentDetails?.cardNumber || "",
@@ -29,6 +39,13 @@ export default function PaymentDetails() {
 			cvv: paymentDetails?.cvv || "",
 		},
 	});
+
+	// Update validation state when form validity changes (only for card payment)
+	useEffect(() => {
+		if (paymentMethod === "card") {
+			setPaymentFormValid(isValid);
+		}
+	}, [isValid, paymentMethod, setPaymentFormValid]);
 
 	const nameOnCard = useWatch({ control, name: "nameOnCard" });
 	const cardNumber = useWatch({ control, name: "cardNumber" });

@@ -12,7 +12,7 @@ export default function Footer() {
 	const { t } = useTranslation();
 	const year = new Date().getFullYear();
 	return (
-		<footer className="w-full bg-background-tint1">
+		<footer className="w-full bg-background-tint1 mt-4">
 			<div className="w-(--content-width) mx-auto flex justify-between items-center py-8 flex-col">
 				<div className="flex justify-between items-center gap-6 w-full">
 					{footerInfoGroups.map((infoGroup) => (
