@@ -1,0 +1,19 @@
+{
+	"breadcrumb": {
+		"home": "Home",
+		"categories": "Categories"
+	},
+	"filters": "Filters",
+	"product": {
+		"add_to_cart": "Add to Cart"
+	},
+	"checkout": {
+		"title": "Checkout"
+	},
+	"steps": {
+		"address": "Address",
+		"payment": "Payment",
+		"review": "Review"
+	}
+}
+

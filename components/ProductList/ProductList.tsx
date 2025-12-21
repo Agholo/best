@@ -9,18 +9,21 @@ import { spreadProductFilterables } from "@/utils/spreadProductFilterables";
 import { Button } from "@/ui/Button";
 import useCart from "@/hooks/useCart";
 import { FilteredProduct } from "@/types/product";
-import { MinusIcon, PlusIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import CartItemControls from "../CartItemControls";
+import { CartItem } from "../CartItem/types";
 
 export default function ProductList({ category }: { category: string }) {
+	const { t } = useTranslation("category");
 	const items = getProductsByCategory(mockProducts, category);
 	const { filteredProducts } = useFilter(items);
 	const products = spreadProductFilterables(filteredProducts);
-	const { addItem, isInCart, removeItem, getItemQuantity } = useCart();
+	const { addItem, isInCart, removeItem, items: cartItems } = useCart();
 	const handleAddToCart = (product: FilteredProduct) => {
 		addItem(product);
 	};
-	const handleRemoveFromCart = (product: FilteredProduct) => {
-		removeItem(product.id);
+	const handleRemoveFromCart = (id: string) => {
+		removeItem(id);
 	};
 
 	return (
@@ -31,12 +34,12 @@ export default function ProductList({ category }: { category: string }) {
 					<Text>{item.name}</Text>
 					<Text>{item.price}</Text>
 					{isInCart(item.id) ?
-						<div className="flex items-center gap-2">
-							<Button variant="outline" onClick={() => handleRemoveFromCart(item)}><MinusIcon /></Button>
-							<Text>{getItemQuantity(item.id)}</Text>
-							<Button variant="outline" onClick={() => handleAddToCart(item)}><PlusIcon /></Button>
-						</div> :
-						<Button onClick={() => handleAddToCart(item)}>Add to Cart</Button>}
+						<CartItemControls
+							onRemove={handleRemoveFromCart}
+							onAdd={handleAddToCart}
+							item={cartItems.find((cartItem) => cartItem.id === item.id) as CartItem}
+						/> :
+						<Button onClick={() => handleAddToCart(item)}>{t("product.add_to_cart")}</Button>}
 				</div>
 			))}
 		</div>

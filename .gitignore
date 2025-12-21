@@ -50,3 +50,5 @@ prisma/*.db-journal
 prisma/*.db-shm
 prisma/*.db-wal
 data/
+
+todo.txt

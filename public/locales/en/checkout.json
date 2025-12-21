@@ -1,0 +1,96 @@
+{
+	"cart": {
+		"title": "Your Cart"
+	},
+	"order_summary": {
+		"title": "Order Summary",
+		"subtotal": "Subtotal",
+		"shipping": "Shipping",
+		"free": "Free",
+		"continue_to_checkout": "Continue to Checkout",
+		"free_returns": "Free returns",
+		"secure_payment": "Secure payment"
+	},
+	"payment": {
+		"methods": {
+			"card": "Credit or Debit Card",
+			"paypal": "PayPal",
+			"apple_pay": "Apple Pay",
+			"google_pay": "Google Pay"
+		},
+		"descriptions": {
+			"paypal": "Secure redirect to PayPal",
+			"apple_pay": "Fast and secure digital wallet payment",
+			"google_pay": "Fast and secure digital wallet payment"
+		},
+		"unavailable": "Coming Soon",
+		"card_form": {
+			"card_number": "Card Number",
+			"card_number_placeholder": "1234 5678 9012 3456",
+			"name_on_card": "Name on Card",
+			"name_on_card_placeholder": "John Doe",
+			"expiration_date": "Expiration Date",
+			"expiration_date_placeholder": "MM/YY",
+			"cvv": "CVV/CVC",
+			"cvv_placeholder": "123"
+		},
+		"errors": {
+			"name_on_card_required": "Name on card is required",
+			"name_on_card_min_length": "Name must be at least 2 characters",
+			"name_on_card_invalid": "Name can only contain letters, spaces, hyphens, and apostrophes",
+			"card_number_required": "Card number is required",
+			"card_number_format": "Card number must contain only digits",
+			"card_number_length": "Card number must be between 13 and 19 digits",
+			"card_number_invalid": "Invalid card number",
+			"expiration_date_required": "Expiration date is required",
+			"expiration_date_format": "Expiration date must be in MM/YY format",
+			"expiration_date_expired": "Card has expired or invalid date",
+			"cvv_required": "CVV/CVC is required",
+			"cvv_format": "CVV must contain only digits",
+			"cvv_length": "CVV must be 3 or 4 digits"
+		}
+	},
+	"address": {
+		"full_name": "Full Name",
+		"full_name_placeholder": "John Doe",
+		"phone": "Phone",
+		"phone_placeholder": "+37477777777",
+		"email": "Email Address",
+		"email_placeholder": "john.doe@example.com",
+		"city": "City/Village",
+		"city_placeholder": "Yerevan, Armavir, etc.",
+		"address": "Address",
+		"address_placeholder": "123 Main St",
+		"errors": {
+			"full_name_required": "Full name is required",
+			"phone_required": "Phone is required",
+			"email_required": "Email is required",
+			"email_invalid": "Invalid email address",
+			"city_required": "City/Village is required",
+			"address_required": "Address is required"
+		}
+	},
+	"footer": {
+		"back_to": "Back to",
+		"continue_to": "Continue to",
+		"cart": "Cart",
+		"complete": "Complete"
+	},
+	"review": {
+		"title": "Review Your Order",
+		"description": "Please review your order details before completing your purchase",
+		"items_in_your_order": "Items in Your Order",
+		"shipping_information": "Shipping Information",
+		"shipping_method": "Standard Shipping",
+		"shipping_duration_info": "Estimated delivery: 3-5 business days",
+		"payment_information": "Payment Information",
+		"quantity": "Quantity",
+		"payment_method": {
+			"card": "Credit or Debit Card",
+			"paypal": "PayPal",
+			"applePay": "Apple Pay",
+			"googlePay": "Google Pay"
+		},
+		"delivery_address": "Delivery Address"
+	}
+}

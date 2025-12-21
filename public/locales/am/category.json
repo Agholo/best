@@ -1,0 +1,19 @@
+{
+	"breadcrumb": {
+		"home": "Գլխավոր",
+		"categories": "Կատեգորիաներ"
+	},
+	"filters": "Զտիչներ",
+	"product": {
+		"add_to_cart": "Ավելացնել Զամբյուղ"
+	},
+	"checkout": {
+		"title": "Վճարում"
+	},
+	"steps": {
+		"address": "Հասցե",
+		"payment": "Վճարում",
+		"review": "Վերանայում"
+	}
+}
+
