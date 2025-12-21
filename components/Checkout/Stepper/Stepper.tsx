@@ -38,7 +38,7 @@ export default function Stepper() {
 	};
 
 	return (
-		<div className="flex justify-center gap-4 mb-5">
+		<div className="flex justify-center gap-2 sm:gap-4 mb-4 sm:mb-5 overflow-x-auto">
 			{steps.map((step, index) => {
 				const isCurrentStep = step.id === currentStep.id;
 				const isClickable = canNavigateToStep(index);

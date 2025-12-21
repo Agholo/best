@@ -41,14 +41,14 @@ export default function CheckoutFooter() {
 	};
 
 	return (
-		<div className="flex flex-col gap-9 w-full mt-9">
+		<div className="flex flex-col gap-6 sm:gap-9 w-full mt-6 sm:mt-9">
 			<Separator />
-			<div className="flex w-full justify-between items-center">
-				<Button onClick={handlePrevious} variant="outline">
+			<div className="flex flex-col sm:flex-row w-full justify-between items-stretch sm:items-center gap-3 sm:gap-4">
+				<Button onClick={handlePrevious} variant="outline" className="w-full sm:w-auto">
 					<ArrowLeft className="size-4" />
 					{t("footer.back_to")} {previousStepTitle}
 				</Button>
-				<Button onClick={handleNext} disabled={!isCurrentStepValid}>
+				<Button onClick={handleNext} disabled={!isCurrentStepValid} className="w-full sm:w-auto">
 					{t("footer.continue_to")} {nextStepTitle}
 					<ArrowRight className="size-4" />
 				</Button>

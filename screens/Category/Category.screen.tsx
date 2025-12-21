@@ -11,8 +11,8 @@ export default function CategoryScreen({ category }: { category: string }) {
 	const { t } = useTranslation("category");
 
 	return (
-		<div>
-			<Breadcrumb>
+		<div className="w-full">
+			<Breadcrumb className="mb-4">
 				<BreadcrumbList>
 					<BreadcrumbItem>
 						<BreadcrumbLink asChild>
@@ -31,9 +31,9 @@ export default function CategoryScreen({ category }: { category: string }) {
 					</BreadcrumbItem>
 				</BreadcrumbList>
 			</Breadcrumb>
-			<Text size="3xl" textTransform="capitalize">{category}</Text>
-			<Text type="h1" size="2xl" weight="bold">{t("filters")}</Text>
-			<div className="flex gap-4 w-full h-full">
+			<Text size="2xl" textTransform="capitalize" className="mb-2 sm:text-3xl">{category}</Text>
+			<Text type="h1" size="xl" weight="bold" className="mb-4 sm:text-2xl">{t("filters")}</Text>
+			<div className="flex flex-col lg:flex-row gap-4 lg:gap-6 w-full h-full">
 				<FilterBar category={category} />
 				<ProductList category={category} />
 			</div>

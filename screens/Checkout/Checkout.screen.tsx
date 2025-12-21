@@ -12,12 +12,14 @@ export default function CheckoutScreen() {
 	const { t } = useTranslation("category");
 
 	return (
-		<div>
-			<Text type="h1" size="3xl" weight="bold">{t("checkout.title")}</Text>
+		<div className="w-full">
+			<Text type="h1" size="2xl" weight="bold" className="mb-4 sm:mb-6 sm:text-3xl">{t("checkout.title")}</Text>
 			<Stepper />
-			<AddressForm />
-			<PaymentDetails />
-			<Review />
+			<div className="mt-6 sm:mt-8">
+				<AddressForm />
+				<PaymentDetails />
+				<Review />
+			</div>
 			<CheckoutFooter />
 		</div>
 	)

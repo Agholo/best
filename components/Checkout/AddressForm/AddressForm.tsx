@@ -65,7 +65,7 @@ export default function AddressForm() {
 						onBlur: handleFieldChange,
 					})}
 				/>
-				<FieldGroup className="gap-4 flex-row">
+				<FieldGroup className="gap-4 flex-col sm:flex-row">
 					<FormField
 						label={t("address.phone")}
 						placeholder={t("address.phone_placeholder")}
@@ -87,7 +87,7 @@ export default function AddressForm() {
 						type="email"
 					/>
 				</FieldGroup>
-				<FieldGroup className="gap-4 flex-row">
+				<FieldGroup className="gap-4 flex-col sm:flex-row">
 					<FormField
 						label={t("address.city")}
 						placeholder={t("address.city_placeholder")}

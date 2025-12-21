@@ -18,9 +18,9 @@ export default function CartScreen() {
 
 	return (
 		<div className="w-full">
-			<Text type="h1" size="5xl" weight="bold">{t("cart.title")}</Text>
-			<div className="flex gap-4 relative">
-				<div className="flex flex-col gap-4 w-3/4">
+			<Text type="h1" size="3xl" weight="bold" className="mb-4 sm:mb-6 sm:text-4xl md:text-5xl">{t("cart.title")}</Text>
+			<div className="flex flex-col lg:flex-row gap-4 lg:gap-6 relative">
+				<div className="flex flex-col gap-4 w-full lg:w-3/4">
 					{items.map((item) => (
 						<CartItem
 							key={item.id}
