@@ -1,5 +1,5 @@
-import HeroBanner from "./HeroBanner";
-import Categories from "./Categories";
+import HeroBanner from "@/components/HeroBanner";
+import Categories from "@/components/Categories";
 
 export default function Home() {
 	return (

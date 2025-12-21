@@ -4,7 +4,7 @@ import { Button } from "@/ui/Button";
 import { Trash2 } from "lucide-react";
 import Text from "@/ui/Text";
 import { CartItemProps } from "./types";
-import CartItemControls from "./CartItemControls";
+import CartItemControls from "../CartItemControls";
 
 export default function CartItem({ item, onRemove, onAdd, onDelete }: CartItemProps) {
 	return (
@@ -24,11 +24,14 @@ export default function CartItem({ item, onRemove, onAdd, onDelete }: CartItemPr
 						</div>
 						<Text type="p" size="sm" weight="bold" color="tint1">{item.description}</Text>
 					</div>
-					<CartItemControls
-						onRemove={onRemove}
-						onAdd={onAdd}
-						item={item}
-					/>
+					<div className="flex items-center gap-2 justify-between">
+						<CartItemControls
+							onRemove={onRemove}
+							onAdd={onAdd}
+							item={item}
+						/>
+						<Text type="p" size="sm" weight="bold">{item.price}</Text>
+					</div>
 				</div>
 			</CardContent>
 		</Card>

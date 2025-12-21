@@ -13,8 +13,14 @@ export default function CheckoutFooter() {
 	const { previousStep, goToPreviousStep, goToNextStep, nextStep, isFirstStep, isLastStep, currentStep } = useCheckoutSteps();
 	const { t } = useTranslation("checkout");
 	const { isStepValid } = useCheckoutValidation();
-	const previousStepTitle = isFirstStep ? t("footer.cart") : previousStep?.title;
-	const nextStepTitle = isLastStep ? t("footer.complete") : nextStep?.title;
+	const getStepTranslation = (stepTitle: string | undefined): string => {
+		if (!stepTitle) return "";
+		const stepKey = stepTitle.toLowerCase() as "address" | "payment" | "review";
+		return t(`steps.${stepKey}`, { ns: "category" });
+	};
+
+	const previousStepTitle = isFirstStep ? t("footer.cart") : getStepTranslation(previousStep?.title);
+	const nextStepTitle = isLastStep ? t("footer.complete") : getStepTranslation(nextStep?.title);
 	const isCurrentStepValid = isStepValid(currentStep.title);
 
 	const handlePrevious = (): void => {

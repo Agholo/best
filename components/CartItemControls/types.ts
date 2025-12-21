@@ -1,5 +1,5 @@
 import { FilteredProduct } from "@/types/product";
-import { CartItem } from "../types";
+import { CartItem } from "../CartItem/types";
 
 export interface CartItemControlsProps {
 	onRemove: (id: string) => void;
