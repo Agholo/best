@@ -40,12 +40,23 @@ export default function PaymentDetails() {
 		},
 	});
 
-	// Update validation state when form validity changes (only for card payment)
+	// Initialize and update validation state based on payment method
 	useEffect(() => {
-		if (paymentMethod === "card") {
+		if (paymentMethod && paymentMethod !== "card") {
+			// Non-card payment methods don't need validation
+			setPaymentFormValid(true);
+		} else if (paymentMethod === "card") {
+			// For card payment, use form validation state
 			setPaymentFormValid(isValid);
 		}
 	}, [isValid, paymentMethod, setPaymentFormValid]);
+
+	// Trigger validation when payment method changes to card (e.g., from storage)
+	useEffect(() => {
+		if (paymentMethod === "card") {
+			trigger();
+		}
+	}, [paymentMethod, trigger]);
 
 	const nameOnCard = useWatch({ control, name: "nameOnCard" });
 	const cardNumber = useWatch({ control, name: "cardNumber" });
