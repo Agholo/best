@@ -5,5 +5,7 @@ export interface PaymentMethodItemProps {
 	isSelected: boolean;
 	onSelect: (method: string) => void;
 	children?: React.ReactNode;
+	isAvailable?: boolean;
+	unavailableMessage?: string;
 }
 

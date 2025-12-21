@@ -3,20 +3,38 @@
 import { useCheckoutSteps } from "@/hooks/useCheckoutSteps";
 import { RadioGroup } from "@/ui/radio-group";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Activity, useEffect } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { Activity } from "react";
+import { useForm } from "react-hook-form";
 import { PaymentDetailsData, paymentDetailsSchema } from "./types";
 import PaymentMethodItem from "./PaymentMethodItem";
 import CardFormFields from "./CardFormFields";
-import { useTranslation } from "react-i18next";
 import useCheckout, { PaymentMethod } from "@/hooks/useCheckout";
 import useCheckoutValidation from "@/hooks/useCheckoutValidation";
+import { AVAILABLE_PAYMENT_METHODS, ALL_PAYMENT_METHODS } from "@/config/paymentMethods";
+import { getMethodDescription, getMethodTitle } from "./data";
+import { formatCardNumber, formatExpirationDate, formatCVV } from "@/utils/formatPayment";
+import { usePaymentDetails } from "@/hooks/usePaymentDetails";
 
 export default function PaymentDetails() {
 	const { currentStep } = useCheckoutSteps();
-	const { t } = useTranslation("checkout");
-	const { paymentMethod, setPaymentMethod, setPaymentDetails, paymentDetails } = useCheckout();
+	const { paymentMethod, setPaymentMethod, paymentDetails } = useCheckout();
 	const { setPaymentFormValid } = useCheckoutValidation();
+
+	const form = useForm<PaymentDetailsData>({
+		resolver: zodResolver(paymentDetailsSchema),
+		mode: "onChange",
+		defaultValues: {
+			nameOnCard: paymentDetails?.nameOnCard || "",
+			cardNumber: paymentDetails?.cardNumber || "",
+			expirationDate: paymentDetails?.expirationDate || "",
+			cvv: paymentDetails?.cvv || "",
+		},
+	});
+
+	const { register, formState: { errors }, setValue, trigger } = form;
+
+	// Use custom hook for all useEffect logic
+	usePaymentDetails({ form });
 
 	const onSelectMethod = async (method: string): Promise<void> => {
 		setPaymentMethod(method as PaymentMethod);
@@ -29,127 +47,51 @@ export default function PaymentDetails() {
 		}
 	};
 
-	const { register, formState: { errors, isValid }, control, setValue, trigger } = useForm<PaymentDetailsData>({
-		resolver: zodResolver(paymentDetailsSchema),
-		mode: "onChange",
-		defaultValues: {
-			nameOnCard: paymentDetails?.nameOnCard || "",
-			cardNumber: paymentDetails?.cardNumber || "",
-			expirationDate: paymentDetails?.expirationDate || "",
-			cvv: paymentDetails?.cvv || "",
-		},
-	});
-
-	// Initialize and update validation state based on payment method
-	useEffect(() => {
-		if (paymentMethod && paymentMethod !== "card") {
-			// Non-card payment methods don't need validation
-			setPaymentFormValid(true);
-		} else if (paymentMethod === "card") {
-			// For card payment, use form validation state
-			setPaymentFormValid(isValid);
-		}
-	}, [isValid, paymentMethod, setPaymentFormValid]);
-
-	// Trigger validation when payment method changes to card (e.g., from storage)
-	useEffect(() => {
-		if (paymentMethod === "card") {
-			trigger();
-		}
-	}, [paymentMethod, trigger]);
-
-	const nameOnCard = useWatch({ control, name: "nameOnCard" });
-	const cardNumber = useWatch({ control, name: "cardNumber" });
-	const expirationDate = useWatch({ control, name: "expirationDate" });
-	const cvv = useWatch({ control, name: "cvv" });
-
-	// Save card details onChange when payment method is card
-	useEffect(() => {
-		if (paymentMethod === "card") {
-			const formData: PaymentDetailsData = {
-				nameOnCard: nameOnCard || "",
-				cardNumber: cardNumber || "",
-				expirationDate: expirationDate || "",
-				cvv: cvv || "",
-			};
-			// Save to store even if validation fails (user is still typing)
-			setPaymentDetails(formData);
-		}
-	}, [nameOnCard, cardNumber, expirationDate, cvv, paymentMethod, setPaymentDetails]);
-
-	const formatCardNumber = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		const input = e.target;
-		const digits = input.value.replace(/\D/g, '');
-		const limited = digits.slice(0, 19); // Support up to 19 digits for all card types
-		const formatted = limited.replace(/(\d{4})(?=\d)/g, '$1 ');
-
-		input.value = formatted;
-		// Update form value after formatting
-		setValue("cardNumber", formatted, { shouldValidate: true });
+	const isMethodAvailable = (method: PaymentMethod): boolean => {
+		return AVAILABLE_PAYMENT_METHODS.includes(method);
 	};
 
-	const formatExpirationDate = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		const input = e.target;
-		const value = input.value.replace(/\D/g, '');
-		const limited = value.slice(0, 4);
-
-		let formatted = limited;
-		if (limited.length >= 2) {
-			formatted = limited.slice(0, 2) + '/' + limited.slice(2);
-		}
-
-		input.value = formatted;
-		// Update form value after formatting
-		setValue("expirationDate", formatted, { shouldValidate: true });
+	// Create formatting handlers with setValue
+	const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		formatCardNumber(e, setValue);
 	};
 
-	const formatCVV = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		const input = e.target;
-		const digits = input.value.replace(/\D/g, '');
-		const limited = digits.slice(0, 4);
-		input.value = limited;
-		// Update form value after formatting
-		setValue("cvv", limited, { shouldValidate: true });
+	const handleExpirationDateChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		formatExpirationDate(e, setValue);
+	};
+
+	const handleCVVChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		formatCVV(e, setValue);
 	};
 
 	return (
 		<Activity mode={currentStep.title === "Payment" ? "visible" : "hidden"}>
 			<RadioGroup>
-				<PaymentMethodItem
-					method="card"
-					title={t("payment.methods.card")}
-					isSelected={paymentMethod === "card"}
-					onSelect={onSelectMethod}
-				>
-					<CardFormFields
-						register={register}
-						errors={errors}
-						onCardNumberChange={formatCardNumber}
-						onExpirationDateChange={formatExpirationDate}
-						onCVVChange={formatCVV}
-					/>
-				</PaymentMethodItem>
-				<PaymentMethodItem
-					method="paypal"
-					title={t("payment.methods.paypal")}
-					description={t("payment.descriptions.paypal")}
-					isSelected={paymentMethod === "paypal"}
-					onSelect={onSelectMethod}
-				/>
-				<PaymentMethodItem
-					method="applePay"
-					title={t("payment.methods.apple_pay")}
-					description={t("payment.descriptions.apple_pay")}
-					isSelected={paymentMethod === "applePay"}
-					onSelect={onSelectMethod}
-				/>
-				<PaymentMethodItem
-					method="googlePay"
-					title={t("payment.methods.google_pay")}
-					description={t("payment.descriptions.google_pay")}
-					isSelected={paymentMethod === "googlePay"}
-					onSelect={onSelectMethod}
-				/>
+				{ALL_PAYMENT_METHODS.map((method) => {
+					const isAvailable = isMethodAvailable(method);
+					return (
+						<PaymentMethodItem
+							key={method}
+							method={method}
+							title={getMethodTitle(method)}
+							description={getMethodDescription(method)}
+							isSelected={paymentMethod === method}
+							onSelect={onSelectMethod}
+							isAvailable={isAvailable}
+							unavailableMessage="payment.unavailable"
+						>
+							{method === "card" && (
+								<CardFormFields
+									register={register}
+									errors={errors}
+									onCardNumberChange={handleCardNumberChange}
+									onExpirationDateChange={handleExpirationDateChange}
+									onCVVChange={handleCVVChange}
+								/>
+							)}
+						</PaymentMethodItem>
+					);
+				})}
 			</RadioGroup>
 		</Activity>
 	);

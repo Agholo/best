@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { AddressFormData } from "@/components/Checkout/AddressForm/types";
 import { PaymentDetailsData } from "@/components/Checkout/PaymentDetails/types";
+import { AVAILABLE_PAYMENT_METHODS } from "@/config/paymentMethods";
 
 export type PaymentMethod = "card" | "paypal" | "applePay" | "googlePay";
 
@@ -25,7 +26,7 @@ const useCheckout = create<CheckoutState>()(
 	persist(
 		(set, get) => ({
 			address: null,
-			paymentMethod: "card",
+			paymentMethod: AVAILABLE_PAYMENT_METHODS[0] || null,
 			paymentDetails: null,
 			setAddress: (address: AddressFormData) => {
 				set({ address });
