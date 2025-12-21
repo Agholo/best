@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { UseFormReturn, useWatch } from "react-hook-form";
 import { PaymentDetailsData } from "@/components/Checkout/PaymentDetails/types";
-import useCheckout, { PaymentMethod } from "@/hooks/useCheckout";
+import useCheckout from "@/hooks/useCheckout";
 import useCheckoutValidation from "@/hooks/useCheckoutValidation";
 import { AVAILABLE_PAYMENT_METHODS } from "@/config/paymentMethods";
 
