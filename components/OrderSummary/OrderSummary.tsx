@@ -13,7 +13,7 @@ export default function OrderSummary({ totalPrice, onContinueToCheckout }: Order
 		<Card className="mw-1/4 sticky top-4 right-0 h-fit">
 			<CardHeader>
 				<CardTitle>
-					<Text type="h2" size="2xl" weight="bold">{t("order_summary.title")}</Text>
+					<Text type="h2" size="xl" weight="bold" className="sm:text-2xl">{t("order_summary.title")}</Text>
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
@@ -29,21 +29,23 @@ export default function OrderSummary({ totalPrice, onContinueToCheckout }: Order
 				</div>
 				<Separator className="mt-6"/>
 			</CardContent>
-			<CardFooter>
-				<div className="flex items-center gap-2 flex-col w-full">
-					<Button className="w-full" onClick={onContinueToCheckout}>{t("order_summary.continue_to_checkout")}</Button>
-					<div className="flex items-center gap-4">
-						<span className="text-sm text-muted-foreground flex items-center gap-1">
-							<Undo2 className="size-4" />
-							<Text type="p" size="xxs" weight="bold" color="tint1">{t("order_summary.free_returns")}</Text>
-						</span>
-						<span className="text-sm text-muted-foreground flex items-center gap-1">
-							<ShieldCheck className="size-4" />
-							<Text type="p" size="xxs" weight="bold" color="tint1">{t("order_summary.secure_payment")}</Text>
-						</span>
+			{onContinueToCheckout && (
+				<CardFooter>
+					<div className="flex items-center gap-2 flex-col w-full">
+						<Button className="w-full" onClick={onContinueToCheckout}>{t("order_summary.continue_to_checkout")}</Button>
+						<div className="flex items-center gap-4">
+							<span className="text-sm text-muted-foreground flex items-center gap-1">
+								<Undo2 className="size-4" />
+								<Text type="p" size="xxs" weight="bold" color="tint1">{t("order_summary.free_returns")}</Text>
+							</span>
+							<span className="text-sm text-muted-foreground flex items-center gap-1">
+								<ShieldCheck className="size-4" />
+								<Text type="p" size="xxs" weight="bold" color="tint1">{t("order_summary.secure_payment")}</Text>
+							</span>
+						</div>
 					</div>
-				</div>
-			</CardFooter>
+				</CardFooter>
+			)}
 		</Card>
 	);
 }

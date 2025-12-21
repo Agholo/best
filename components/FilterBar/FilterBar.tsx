@@ -46,7 +46,7 @@ export default function FilterBar({ category }: { category: string }) {
 	};
 
 	return (
-		<aside className="w-1/3 h-full">
+		<aside className="w-full lg:w-1/3 h-full">
 			<Accordion type="multiple">
 				{Object.entries(filterableFields).map(([key, value]) => {
 					const filterKey = key as keyof ProductType["filterable"];

@@ -29,7 +29,7 @@ export default function Categories() {
 			>
 				<CarouselContent className="-ml-2 md:-ml-4">
 					{categories.map(category => (
-						<CarouselItem key={category.id} className="pl-2 md:pl-4 basis-[20%]">
+						<CarouselItem key={category.id} className="pl-2 md:pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-[20%]">
 							<Category {...category} />
 						</CarouselItem>
 					))}

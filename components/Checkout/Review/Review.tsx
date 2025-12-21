@@ -18,10 +18,10 @@ export default function Review() {
 
 	return (
 		<Activity mode={currentStep.title === CheckoutStepTitle.REVIEW ? "visible" : "hidden"}>
-			<div className="w-full relative flex gap-4 space-between">
-				<div className="w-full">
-					<Text type="h2" size="2xl" weight="bold">{t("review.title")}</Text>
-					<Text type="p" size="sm" weight="bold">{t("review.description")}</Text>
+			<div className="w-full relative flex flex-col lg:flex-row gap-4 lg:gap-6">
+				<div className="w-full lg:w-3/4">
+					<Text type="h2" size="xl" weight="bold" className="mb-2 sm:text-2xl">{t("review.title")}</Text>
+					<Text type="p" size="sm" weight="bold" className="mb-4">{t("review.description")}</Text>
 					<div>
 						<span className="flex items-center gap-2 my-4">
 							<PackageOpenIcon className="stroke-primary" />
@@ -38,9 +38,9 @@ export default function Review() {
 							<TruckElectric className="stroke-primary" />
 							<Text type="p" size="sm" weight="bold">{t("review.shipping_information")}</Text>
 						</span>
-						<div className="flex items-center justify-between border bg-card rounded-xl shadow-sm w-full p-4">
+						<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border bg-card rounded-xl shadow-sm w-full p-4 gap-4">
 							<div className="flex items-center gap-2">
-								<span className="flex items-center p-3 bg-primary/10 rounded-md">
+								<span className="flex items-center p-3 bg-primary/10 rounded-md shrink-0">
 									<Truck className="fill-primary stroke-primary"/>
 								</span>
 								<div className="flex flex-col gap-2">
@@ -48,7 +48,7 @@ export default function Review() {
 									<Text type="p" size="sm" weight="bold">{t("review.shipping_duration_info")}</Text>
 								</div>
 							</div>
-							<span className="flex items-center p-2 bg-primary/10 rounded-md">
+							<span className="flex items-center p-2 bg-primary/10 rounded-md shrink-0">
 								<p className="text-primary">FREE</p>
 							</span>
 						</div>
@@ -58,9 +58,9 @@ export default function Review() {
 							<CreditCard className="stroke-primary" />
 							<Text type="p" size="sm" weight="bold">{t("review.payment_information")}</Text>
 						</span>
-						<div className="flex items-center justify-between border bg-card rounded-xl shadow-sm w-full p-4">
+						<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border bg-card rounded-xl shadow-sm w-full p-4 gap-4">
 							<div className="flex items-center gap-2">
-								<span className="flex items-center p-3 bg-primary/10 rounded-md">
+								<span className="flex items-center p-3 bg-primary/10 rounded-md shrink-0">
 									<CreditCard className="stroke-primary"/>
 								</span>
 								<div className="flex flex-col gap-2">
@@ -68,7 +68,7 @@ export default function Review() {
 									{isPaymentMethodCard && <Text type="p" size="sm" weight="bold">{`**** **** **** ${paymentDetails?.cardNumber?.slice(-4)}`}</Text>}
 								</div>
 							</div>
-							<ShieldCheck className="stroke-primary"/>
+							<ShieldCheck className="stroke-primary shrink-0"/>
 						</div>
 					</div>
 					<div className="mt-4 w-full">
@@ -111,10 +111,12 @@ export default function Review() {
 						</div>
 					</div>
 				</div>
-				<OrderSummary
-					totalPrice={getTotalPrice()}
-					onContinueToCheckout={() => {}}
-				/>
+				<div className="w-full lg:w-1/4 lg:sticky lg:top-4 lg:h-fit">
+					<OrderSummary
+						totalPrice={getTotalPrice()}
+						onContinueToCheckout={() => {}}
+					/>
+				</div>
 			</div>
 		</Activity>
 	);

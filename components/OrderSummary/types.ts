@@ -1,5 +1,5 @@
 export interface OrderSummaryProps {
 	totalPrice: string;
-	onContinueToCheckout: () => void;
+	onContinueToCheckout?: () => void;
 }
 

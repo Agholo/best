@@ -41,7 +41,7 @@ export default function CardFormFields({ register, errors, onCardNumberChange, o
 					)}
 				</FieldContent>
 			</Field>
-			<FieldGroup className="gap-4 flex-row">
+			<FieldGroup className="gap-4 flex-col sm:flex-row">
 				<Field>
 					<FieldLabel>{t("payment.card_form.expiration_date")}</FieldLabel>
 					<FieldContent>
