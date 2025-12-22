@@ -1,12 +1,4 @@
-import { getServerSession } from "next-auth/next";
-import { redirect } from "next/navigation";
-
-export default async function AuthLayout({ children }: { children: React.ReactNode }) {
-	const session = await getServerSession();
-
-	if (session) {
-		redirect("/home");
-	}
-
+export default function AuthLayout({ children }: { children: React.ReactNode }): React.ReactNode {
+	// Auth redirect is now handled by middleware for static rendering
 	return children;
 }
