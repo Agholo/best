@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
-import { User } from "@/types/user";
+import { User, Role } from "@/types/user";
 
 export async function createUser(
 	email: string,
@@ -29,10 +29,16 @@ export async function createUser(
 			},
 		});
 
-		// Return user without password
+		// Return user without password, converting Prisma Role to custom Role
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { password: _, ...userWithoutPassword } = user;
-		return { user: userWithoutPassword, error: null };
+		return {
+			user: {
+				...userWithoutPassword,
+				role: userWithoutPassword.role as Role,
+			},
+			error: null
+		};
 	} catch (error) {
 		console.error("Error creating user:", error);
 		return { user: null, error: "Failed to create user" };
@@ -41,9 +47,19 @@ export async function createUser(
 
 export async function findUserByEmail(email: string): Promise<User | null> {
 	try {
-		return await prisma.user.findUnique({
+		const user = await prisma.user.findUnique({
 			where: { email: email.toLowerCase() },
 		});
+
+		if (!user) {
+			return null;
+		}
+
+		// Convert Prisma User to custom User type
+		return {
+			...user,
+			role: user.role as Role,
+		};
 	} catch (error) {
 		console.error("Error finding user:", error);
 		return null;

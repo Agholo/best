@@ -3,6 +3,7 @@ import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/Layout";
 import Root from "@/components/Root";
+import { Toaster } from "@/ui/sonner";
 
 const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
 	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
 	return (
 		<html lang="en">
@@ -29,6 +30,7 @@ export default function RootLayout({
 						{children}
 					</Layout>
 				</Root>
+				<Toaster />
 			</body>
 		</html>
 	);

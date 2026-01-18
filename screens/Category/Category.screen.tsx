@@ -6,9 +6,13 @@ import Text from "@/ui/Text";
 import FilterBar from "@/components/FilterBar/FilterBar";
 import ProductList from "@/components/ProductList/ProductList";
 import { useTranslation } from "react-i18next";
+import { generateCategoryKey } from "@/utils/generateCategoryKey";
 
 export default function CategoryScreen({ category }: { category: string }) {
-	const { t } = useTranslation("category");
+	const { t: tCategory } = useTranslation("category");
+	const { t: tCategories } = useTranslation("categories");
+	const translationKey = `db_${generateCategoryKey(category)}`;
+	const translatedCategory = tCategories(translationKey, { defaultValue: category });
 
 	return (
 		<div>
@@ -16,23 +20,23 @@ export default function CategoryScreen({ category }: { category: string }) {
 				<BreadcrumbList>
 					<BreadcrumbItem>
 						<BreadcrumbLink asChild>
-							<Link href="/home">{t("breadcrumb.home")}</Link>
+							<Link href="/home">{tCategory("breadcrumb.home")}</Link>
 						</BreadcrumbLink>
 					</BreadcrumbItem>
 					<BreadcrumbSeparator />
 					<BreadcrumbItem>
 						<BreadcrumbLink asChild>
-							<Link href="/categories">{t("breadcrumb.categories")}</Link>
+							<Link href="/categories">{tCategory("breadcrumb.categories")}</Link>
 						</BreadcrumbLink>
 					</BreadcrumbItem>
 					<BreadcrumbSeparator />
 					<BreadcrumbItem>
-						<BreadcrumbPage>{category}</BreadcrumbPage>
+						<BreadcrumbPage>{translatedCategory}</BreadcrumbPage>
 					</BreadcrumbItem>
 				</BreadcrumbList>
 			</Breadcrumb>
-			<Text size="3xl" textTransform="capitalize">{category}</Text>
-			<Text type="h1" size="2xl" weight="bold">{t("filters")}</Text>
+			<Text size="3xl" textTransform="capitalize">{translatedCategory}</Text>
+			<Text type="h1" size="2xl" weight="bold">{tCategory("filters")}</Text>
 			<div className="flex gap-4 w-full h-full">
 				<FilterBar category={category} />
 				<ProductList category={category} />

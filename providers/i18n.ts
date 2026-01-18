@@ -7,7 +7,15 @@ const supportedLngs = ["en", "am", "ru"];
 
 const initOptions = {
 	backend: {
-		loadPath: "/locales/{{lng}}/{{ns}}.json",
+		loadPath: (lngs: string[], namespaces: string[]) => {
+			// For "categories" namespace, load from API
+			// For other namespaces, load from static files
+			const namespace = namespaces[0];
+			if (namespace === "categories") {
+				return `/api/translations?namespace=categories&lang=${lngs[0]}`;
+			}
+			return `/locales/${lngs[0]}/${namespace}.json`;
+		},
 	},
 	fallbackLng: "en",
 	supportedLngs,

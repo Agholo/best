@@ -31,6 +31,7 @@ export const authOptions: NextAuthOptions = {
 					id: user.id,
 					email: user.email,
 					name: user.name || user.email.split("@")[0],
+					role: user.role,
 				};
 			},
 		}),
@@ -43,13 +44,15 @@ export const authOptions: NextAuthOptions = {
 			if (user) {
 				token.id = user.id;
 				token.email = user.email;
+				token.role = user.role;
 			}
 			return token;
 		},
 		async session({ session, token }) {
-			if (session.user) {
+			if (session.user && token) {
 				session.user.id = token.id as string;
 				session.user.email = token.email as string;
+				session.user.role = token.role;
 			}
 			return session;
 		},
