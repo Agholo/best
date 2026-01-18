@@ -16,7 +16,6 @@ export default function DeleteConfirmationDialog({
 	onConfirm,
 	title = "Delete Item",
 	description,
-	itemName,
 }: DeleteConfirmationDialogProps): React.ReactElement {
 	const handleConfirm = (): void => {
 		onConfirm();
@@ -33,18 +32,7 @@ export default function DeleteConfirmationDialog({
 						</div>
 						<DialogTitle>{title}</DialogTitle>
 					</div>
-					<DialogDescription>
-						{description || (
-							<>
-								Are you sure you want to delete{" "}
-								{itemName && <strong>{itemName}</strong>}
-								{itemName ? "?" : " this item?"}
-								<br />
-								<br />
-								This action cannot be undone.
-							</>
-						)}
-					</DialogDescription>
+					<DialogDescription>{description}</DialogDescription>
 				</DialogHeader>
 				<DialogFooter>
 					<Button variant="outline" onClick={() => onOpenChange(false)}>

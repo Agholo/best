@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { Product } from "@/types/product";
 
 export interface CreateProductData {
 	name: string;
@@ -45,7 +44,6 @@ export async function createProduct(
 			}
 		});
 
-		// @ts-expect-error - Prisma client may need regeneration
 		const product = await prisma.product.create({
 			data: {
 				name: data.name,
@@ -94,13 +92,12 @@ export async function createProduct(
 
 export async function getAllProducts(): Promise<{ products: ProductResult[]; error: null } | { products: null; error: string }> {
 	try {
-		// @ts-expect-error - Prisma client may need regeneration
 		const products = await prisma.product.findMany({
 			orderBy: { createdAt: "desc" },
 		});
 
 		return {
-			products: products.map((product: { data: unknown; [key: string]: unknown }) => ({
+			products: products.map((product: { data: unknown;[key: string]: unknown }) => ({
 				...product,
 				data: product.data as Record<string, string | number>,
 			})),
@@ -116,14 +113,13 @@ export async function getProductsByCategory(
 	category: string
 ): Promise<{ products: ProductResult[]; error: null } | { products: null; error: string }> {
 	try {
-		// @ts-expect-error - Prisma client may need regeneration
 		const products = await prisma.product.findMany({
 			where: { category },
 			orderBy: { createdAt: "desc" },
 		});
 
 		return {
-			products: products.map((product: { data: unknown; [key: string]: unknown }) => ({
+			products: products.map((product: { data: unknown;[key: string]: unknown }) => ({
 				...product,
 				data: product.data as Record<string, string | number>,
 			})),
@@ -139,7 +135,6 @@ export async function deleteProduct(
 	productId: string
 ): Promise<{ success: true; error: null } | { success: false; error: string }> {
 	try {
-		// @ts-expect-error - Prisma client may need regeneration
 		await prisma.product.delete({
 			where: { id: productId },
 		});

@@ -5,16 +5,7 @@ import Text from "@/ui/Text";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/ui/Button";
 import { Trash2 } from "lucide-react";
-
-/**
- * Generates a safe key from category name (for use in translation files)
- */
-function generateCategoryKey(categoryName: string): string {
-	return categoryName
-		.toLowerCase()
-		.replace(/\s+/g, "_")
-		.replace(/[^a-z0-9_]/g, "");
-}
+import { generateCategoryKey } from "@/utils/generateCategoryKey";
 
 export default function Category({ title, url, icon, isAdmin, onDelete }: CategoryProps) {
 	const { t } = useTranslation("categories");

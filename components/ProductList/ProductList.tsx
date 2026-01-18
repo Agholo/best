@@ -16,6 +16,7 @@ import useUserRole from "@/hooks/useUserRole";
 import ProductPopup from "../ProductPopup";
 import { Plus, Trash2 } from "lucide-react";
 import DeleteConfirmationDialog from "../DeleteConfirmationDialog";
+import { toast } from "sonner";
 
 export default function ProductList({ category }: { category: string }) {
 	const { t } = useTranslation("category");
@@ -29,8 +30,7 @@ export default function ProductList({ category }: { category: string }) {
 	useEffect(() => {
 		const fetchCategory = async (): Promise<void> => {
 			try {
-				const url = `/categories/${category}`;
-				const response = await axios.get(`/api/categories?url=${encodeURIComponent(url)}`);
+				const response = await axios.get(`/api/categories?name=${encodeURIComponent(category)}`);
 				if (response.data?.category?.fields) {
 					setCategoryFields(response.data.category.fields as CategoryField[]);
 				}
@@ -87,12 +87,13 @@ export default function ProductList({ category }: { category: string }) {
 				setProducts(response.data.products as Product[]);
 			}
 			setProductToDelete(null);
+			toast.success("Product deleted successfully");
 		} catch (error) {
 			console.error("Failed to delete product:", error);
 			if (axios.isAxiosError(error) && error.response) {
-				alert(error.response.data?.error || "Failed to delete product. Please try again.");
+				toast.error(error.response.data?.error || "Failed to delete product. Please try again.");
 			} else {
-				alert("Failed to delete product. Please try again.");
+				toast.error("Failed to delete product. Please try again.");
 			}
 		}
 	};
@@ -164,7 +165,15 @@ export default function ProductList({ category }: { category: string }) {
 				onOpenChange={setDeleteDialogOpen}
 				onConfirm={handleDeleteConfirm}
 				title="Delete Product"
-				itemName={productToDelete?.name}
+				description={
+					<>
+						Are you sure you want to delete{" "}
+						{productToDelete?.name && <strong>{productToDelete.name}</strong>}?
+						<br />
+						<br />
+						This action cannot be undone.
+					</>
+				}
 			/>
 		</div>
 	);

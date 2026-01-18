@@ -27,7 +27,7 @@ export function useCategoryForm() {
 		append({
 			id: `field-${Date.now()}-${Math.random()}`,
 			name: "",
-			type: "",
+			type: "checkbox",
 		});
 	};
 

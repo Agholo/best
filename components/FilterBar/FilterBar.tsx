@@ -18,8 +18,7 @@ export default function FilterBar({ category }: { category: string }) {
 	useEffect(() => {
 		const fetchCategory = async (): Promise<void> => {
 			try {
-				const url = `/categories/${category}`;
-				const response = await axios.get(`/api/categories?url=${encodeURIComponent(url)}`);
+				const response = await axios.get(`/api/categories?name=${encodeURIComponent(category)}`);
 				if (response.data?.category?.fields) {
 					setCategoryFields(response.data.category.fields as CategoryField[]);
 				}

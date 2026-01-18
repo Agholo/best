@@ -1,6 +1,11 @@
 import { z } from "zod";
 
-export type FieldType = "string" | "checkbox" | "range";
+export type FieldType = "checkbox" | "range";
+
+export const FIELD_TYPE_OPTIONS: { value: FieldType; label: string }[] = [
+	{ value: "checkbox", label: "Checkbox" },
+	{ value: "range", label: "Range" },
+];
 
 export interface DynamicField {
 	id: string;
@@ -15,7 +20,7 @@ export const categoryFormSchema = z.object({
 		z.object({
 			id: z.string(),
 			name: z.string().min(1, "Field name is required"),
-			type: z.enum(["string", "checkbox", "range"]),
+			type: z.enum(["checkbox", "range"]),
 		})
 	),
 });

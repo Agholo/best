@@ -2,15 +2,15 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { FilteredProduct } from "@/types/product";
+import { Product } from "@/types/product";
 
-interface CartItem extends FilteredProduct {
+interface CartItem extends Product {
 	quantity: number;
 }
 
 interface CartState {
 	items: CartItem[];
-	addItem: (product: FilteredProduct, quantity?: number) => void;
+	addItem: (product: Product, quantity?: number) => void;
 	removeItem: (productId: string) => void;
 	deleteItem: (productId: string) => void;
 	updateQuantity: (productId: string, quantity: number) => void;

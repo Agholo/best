@@ -4,6 +4,7 @@ import Select from "@/ui/Select";
 import { Label } from "@/ui/label";
 import { Trash2 } from "lucide-react";
 import { CategoryFieldProps } from "./types";
+import { FIELD_TYPE_OPTIONS } from "../types";
 
 export default function CategoryField({
 	index,
@@ -46,12 +47,14 @@ export default function CategoryField({
 					<Label htmlFor={`field-type-${index}`}>Field Type</Label>
 					<Select
 						id={`field-type-${index}`}
+						defaultValue="checkbox"
 						{...register(`fields.${index}.type` as const)}
 					>
-						<option value="">Select type</option>
-						<option value="string">String</option>
-						<option value="checkbox">Checkbox</option>
-						<option value="range">Range</option>
+						{FIELD_TYPE_OPTIONS.map((option) => (
+							<option key={option.value} value={option.value}>
+								{option.label}
+							</option>
+						))}
 					</Select>
 				</div>
 			</div>

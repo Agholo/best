@@ -1,13 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { translateCategoryName } from "./translation";
 import { upsertTranslation, deleteTranslation } from "./translationDb";
+import { generateCategoryKey } from "@/utils/generateCategoryKey";
 
-function generateCategoryKey(categoryName: string): string {
-	return categoryName
-		.toLowerCase()
-		.replace(/\s+/g, "_")
-		.replace(/[^a-z0-9_]/g, "");
-}
+export { generateCategoryKey };
 
 export interface CreateCategoryData {
 	name: string;
@@ -196,35 +192,6 @@ export async function getCategoryByName(
 		};
 	} catch (error) {
 		console.error("Error fetching category:", error);
-		return { category: null, error: "Failed to fetch category" };
-	}
-}
-
-export async function getCategoryByUrl(
-	url: string
-): Promise<{ category: CategoryResult; error: null } | { category: null; error: string }> {
-	try {
-		const category = await prisma.category.findUnique({
-			where: { url },
-		});
-
-		if (!category) {
-			return { category: null, error: "Category not found" };
-		}
-
-		return {
-			category: {
-				...category,
-				fields: category.fields as Array<{
-					id: string;
-					name: string;
-					type: string;
-				}>,
-			},
-			error: null,
-		};
-	} catch (error) {
-		console.error("Error fetching category by URL:", error);
 		return { category: null, error: "Failed to fetch category" };
 	}
 }

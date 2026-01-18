@@ -41,14 +41,15 @@ export default function ProductPopup({ children, category, onSuccess }: ProductP
 	} = form;
 
 	const filterableFields = watch("filterableFields") || {};
-	const additionalFieldsData = watch("additionalFields") || {};
 
-	useEffect(() => {
-		if (!open) {
+	// Reset form and additional fields when dialog closes
+	const handleOpenChange = (newOpen: boolean): void => {
+		if (!newOpen) {
 			reset();
 			setAdditionalFields([]);
 		}
-	}, [open, reset]);
+		setOpen(newOpen);
+	};
 
 	useEffect(() => {
 		if (category) {
@@ -61,8 +62,7 @@ export default function ProductPopup({ children, category, onSuccess }: ProductP
 			if (!category || !open) return;
 
 			try {
-				const url = `/categories/${category}`;
-				const response = await axios.get(`/api/categories?url=${encodeURIComponent(url)}`);
+				const response = await axios.get(`/api/categories?name=${encodeURIComponent(category)}`);
 				if (response.data?.category?.fields) {
 					const fields = response.data.category.fields as CategoryField[];
 					setCategoryFields(fields);
@@ -145,9 +145,8 @@ export default function ProductPopup({ children, category, onSuccess }: ProductP
 		setAdditionalFields(updated);
 	};
 
-
 	return (
-		<Dialog open={open} onOpenChange={setOpen}>
+		<Dialog open={open} onOpenChange={handleOpenChange}>
 			<form>
 				<DialogTrigger asChild>{children}</DialogTrigger>
 				<DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
@@ -185,9 +184,7 @@ export default function ProductPopup({ children, category, onSuccess }: ProductP
 							<textarea
 								id="description"
 								{...register("description")}
-								className={`min-h-[100px] rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
-									errors.description ? "border-destructive" : ""
-								}`}
+								className={`min-h-[100px] rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] ${errors.description ? "border-destructive" : ""}`}
 							/>
 							{errors.description && (
 								<p className="text-sm text-destructive">{errors.description.message}</p>

@@ -3,7 +3,6 @@ export interface DeleteConfirmationDialogProps {
 	onOpenChange: (open: boolean) => void;
 	onConfirm: () => void;
 	title?: string;
-	description?: string | React.ReactNode;
-	itemName?: string;
+	description: string | React.ReactNode;
 }
 

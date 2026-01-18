@@ -3,7 +3,6 @@ import {
 	createCategory,
 	getAllCategories,
 	getCategoryByName,
-	getCategoryByUrl,
 	deleteCategory,
 } from "@/services/category";
 import { categoryFormSchema } from "@/components/CategoryPopup/types";
@@ -90,25 +89,6 @@ export async function GET(request: NextRequest) {
 	try {
 		const { searchParams } = new URL(request.url);
 		const name = searchParams.get("name");
-		const url = searchParams.get("url");
-
-		// If URL query parameter is provided, get category by URL (for slug-based routes)
-		if (url) {
-			const fullUrl = url.startsWith("/") ? url : `/categories/${url}`;
-			const result = await getCategoryByUrl(fullUrl);
-
-			if (result.error) {
-				return NextResponse.json(
-					{ error: result.error },
-					{ status: 404 }
-				);
-			}
-
-			return NextResponse.json(
-				{ category: result.category },
-				{ status: 200 }
-			);
-		}
 
 		// If name query parameter is provided, get category by name
 		if (name) {

@@ -101,7 +101,7 @@ export async function GET(request: NextRequest) {
 			}
 
 			// Transform products to match Product type
-			const products = result.products.map((product) => ({
+			const products = result.products?.map((product) => ({
 				id: product.id,
 				name: product.name,
 				description: product.description,
@@ -126,7 +126,7 @@ export async function GET(request: NextRequest) {
 		}
 
 		// Transform products to match Product type
-		const products = result.products.map((product) => ({
+		const products = result.products?.map((product) => ({
 			id: product.id,
 			name: product.name,
 			description: product.description,

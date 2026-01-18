@@ -17,6 +17,7 @@ import { Category as CategoryType } from "./Category/types";
 import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog";
 import CategoryPopup from "../CategoryPopup";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 interface DatabaseCategory {
 	id: string;
@@ -104,12 +105,13 @@ export default function Categories() {
 			// Refresh categories after deletion
 			handleCategoryAdded();
 			setCategoryToDelete(null);
+			toast.success("Category deleted successfully");
 		} catch (error) {
 			console.error("Failed to delete category:", error);
 			if (axios.isAxiosError(error) && error.response) {
-				alert(error.response.data?.error || "Failed to delete category. Please try again.");
+				toast.error(error.response.data?.error || "Failed to delete category. Please try again.");
 			} else {
-				alert("Failed to delete category. Please try again.");
+				toast.error("Failed to delete category. Please try again.");
 			}
 		}
 	};
@@ -187,17 +189,16 @@ export default function Categories() {
 				onConfirm={handleDeleteConfirm}
 				title="Delete Category"
 				description={
-					categoryToDelete ? (
-						<>
-							Are you sure you want to delete <strong>{categoryToDelete.name}</strong>?
-							<br />
-							<br />
-							<strong className="text-destructive">Warning:</strong> All products in this category will also be deleted.
-							<br />
-							<br />
-							This action cannot be undone.
-						</>
-					) : undefined
+					<>
+						Are you sure you want to delete{" "}
+						{categoryToDelete?.name && <strong>{categoryToDelete.name}</strong>}?
+						<br />
+						<br />
+						<strong className="text-destructive">Warning:</strong> All products in this category will also be deleted.
+						<br />
+						<br />
+						This action cannot be undone.
+					</>
 				}
 			/>
 		</div>

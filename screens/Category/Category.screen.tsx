@@ -6,16 +6,7 @@ import Text from "@/ui/Text";
 import FilterBar from "@/components/FilterBar/FilterBar";
 import ProductList from "@/components/ProductList/ProductList";
 import { useTranslation } from "react-i18next";
-
-/**
- * Generates a safe key from category name (for use in translation files)
- */
-function generateCategoryKey(categoryName: string): string {
-	return categoryName
-		.toLowerCase()
-		.replace(/\s+/g, "_")
-		.replace(/[^a-z0-9_]/g, "");
-}
+import { generateCategoryKey } from "@/utils/generateCategoryKey";
 
 export default function CategoryScreen({ category }: { category: string }) {
 	const { t: tCategory } = useTranslation("category");
