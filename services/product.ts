@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 export interface CreateProductData {
 	name: string;
@@ -51,7 +52,7 @@ export async function createProduct(
 				image: data.image,
 				stock: data.stock,
 				category: data.category,
-				data: processedData as unknown as Record<string, unknown>,
+				data: processedData as Prisma.InputJsonValue,
 			},
 		});
 
@@ -97,10 +98,10 @@ export async function getAllProducts(): Promise<{ products: ProductResult[]; err
 		});
 
 		return {
-			products: products.map((product: { data: unknown;[key: string]: unknown }) => ({
+			products: products.map((product) => ({
 				...product,
 				data: product.data as Record<string, string | number>,
-			})),
+			})) as ProductResult[],
 			error: null,
 		};
 	} catch (error) {
@@ -119,10 +120,10 @@ export async function getProductsByCategory(
 		});
 
 		return {
-			products: products.map((product: { data: unknown;[key: string]: unknown }) => ({
+			products: products.map((product) => ({
 				...product,
 				data: product.data as Record<string, string | number>,
-			})),
+			})) as ProductResult[],
 			error: null,
 		};
 	} catch (error) {

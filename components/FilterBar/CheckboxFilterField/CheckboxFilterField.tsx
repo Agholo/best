@@ -7,7 +7,7 @@ export default function CheckboxFilterField({
 	options,
 	currentFilter,
 	onChange,
-}: CheckboxFilterFieldProps): JSX.Element {
+}: CheckboxFilterFieldProps) {
 	const isChecked = (item: string): boolean => {
 		return Array.isArray(currentFilter) && currentFilter.includes(item);
 	};

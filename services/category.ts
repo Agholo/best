@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 import { translateCategoryName } from "./translation";
 import { upsertTranslation, deleteTranslation } from "./translationDb";
 import { generateCategoryKey } from "@/utils/generateCategoryKey";
@@ -51,7 +52,7 @@ export async function createCategory(
 				name: data.name,
 				icon: data.icon,
 				url,
-				fields: data.fields as unknown as Record<string, unknown>,
+				fields: data.fields as Prisma.InputJsonValue,
 			},
 		});
 
@@ -151,14 +152,14 @@ export async function getAllCategories(): Promise<{ categories: CategoryResult[]
 		});
 
 		return {
-			categories: categories.map((category: { fields: unknown;[key: string]: unknown }) => ({
+			categories: categories.map((category) => ({
 				...category,
 				fields: category.fields as Array<{
 					id: string;
 					name: string;
 					type: string;
 				}>,
-			})),
+			})) as CategoryResult[],
 			error: null,
 		};
 	} catch (error) {

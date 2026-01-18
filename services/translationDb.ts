@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 // Prefix for database translations to distinguish from local file translations
 const DB_TRANSLATION_PREFIX = "db_";
@@ -56,12 +57,12 @@ export async function upsertTranslation(
 				key: prefixedKey,
 			},
 			update: {
-				values: data.values as unknown as Record<string, unknown>,
+				values: data.values as Prisma.InputJsonValue,
 			},
 			create: {
 				key: prefixedKey,
 				namespace,
-				values: data.values as unknown as Record<string, unknown>,
+				values: data.values as Prisma.InputJsonValue,
 			},
 		});
 

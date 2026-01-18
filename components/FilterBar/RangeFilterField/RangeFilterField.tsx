@@ -7,7 +7,7 @@ export default function RangeFilterField({
 	currentValue,
 	onChange,
 	onCommit,
-}: RangeFilterFieldProps): JSX.Element {
+}: RangeFilterFieldProps) {
 	return (
 		<div key={fieldName}>
 			<Slider
