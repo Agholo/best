@@ -7,3 +7,7 @@ export interface Category {
 	icon: IconName;
 }
 
+export interface CategoryProps extends Category {
+	isAdmin?: boolean;
+	onDelete?: () => void;
+}

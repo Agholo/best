@@ -5,11 +5,8 @@ export interface Product {
 	image: string;
 	category: string;
 	stock: number;
-	filterable: {
-		brand: string;
-		price: string;
-	};
+	[key: string]: string | number; // Allow dynamic filterable fields
 }
 
-export type FilteredProduct = Omit<Product, "filterable"> & Product["filterable"];
+export type FilteredProduct = Product;
 export type FilteredProducts = FilteredProduct[];
